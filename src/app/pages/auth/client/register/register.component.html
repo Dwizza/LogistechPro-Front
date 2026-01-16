@@ -1,0 +1,85 @@
+<div class="bg-space flex items-center justify-center p-6 lg:p-12 relative overflow-hidden">
+  <!-- Glowing subtle orb - faint Blue -->
+  <div
+    class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-500/10 rounded-full blur-[140px] pointer-events-none">
+  </div>
+
+  <div class="relative w-full max-w-[420px] animate-fadeIn">
+    <!-- Branding Header -->
+    <div class="text-center mb-10">
+      <div class="inline-block mb-6 relative">
+        <div
+          class="w-14 h-14 bg-white/[0.03] border border-white/10 rounded-xl flex items-center justify-center backdrop-blur-xl shadow-2xl">
+          <svg class="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+              d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+          </svg>
+        </div>
+        <div class="absolute -inset-2 bg-blue-500/20 blur-3xl rounded-full -z-10 animate-pulse"></div>
+      </div>
+      <h1 class="text-xs font-black text-blue-500 uppercase tracking-[0.5em] mb-3">Client Registry</h1>
+      <h2 class="text-3xl font-light text-white tracking-tight">Create <span class="font-bold">ACCOUNT</span></h2>
+    </div>
+
+    <!-- Main Card -->
+    <div class="neo-card rounded-[2.5rem] p-8 lg:p-10 border-white/20">
+      <div *ngIf="errorMsg"
+        class="mb-8 p-4 bg-red-500/20 border border-red-500/30 rounded-2xl flex items-center space-x-3 text-red-100 animate-shake">
+        <div class="w-1.5 h-1.5 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+        <span class="text-[10px] font-black uppercase tracking-widest">{{ errorMsg }}</span>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6">
+        <div class="space-y-2">
+          <label class="label-vivid ml-1">Full Name</label>
+          <input type="text" formControlName="name"
+            class="w-full glow-input px-6 py-4 rounded-2xl outline-none text-base placeholder:text-white/10"
+            placeholder="John Doe">
+        </div>
+
+        <div class="space-y-2">
+          <label class="label-vivid ml-1">Email</label>
+          <input type="email" formControlName="email"
+            class="w-full glow-input px-6 py-4 rounded-2xl outline-none text-base placeholder:text-white/10"
+            placeholder="john@logistech.com">
+        </div>
+
+        <div class="space-y-2">
+          <label class="label-vivid ml-1">Password</label>
+          <input type="password" formControlName="password"
+            class="w-full glow-input px-6 py-4 rounded-2xl outline-none text-base placeholder:text-white/10"
+            placeholder="••••••••">
+        </div>
+
+        <div class="pt-4 flex items-center space-x-3 px-1">
+          <input type="checkbox" id="terms"
+            class="w-5 h-5 bg-white/5 border border-white/20 rounded-lg focus:ring-blue-500/30 transition-all cursor-pointer">
+          <label for="terms"
+            class="text-[9px] font-black text-white/40 uppercase tracking-[0.15em] cursor-pointer leading-relaxed">Accept
+            protocols & privacy</label>
+        </div>
+
+        <button type="submit" [disabled]="loading || form.invalid"
+          class="w-full py-5 rounded-2xl btn-neon-blue disabled:disabled-glow flex items-center justify-center space-x-3 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+          <svg *ngIf="loading" class="animate-spin h-5 w-5" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+            </path>
+          </svg>
+          <span class="text-xs font-black tracking-[0.3em]">{{ loading ? 'Deploying Registry...' : 'Register'
+            }}</span>
+        </button>
+      </form>
+
+      <div class="mt-10 pt-8 border-t border-white/[0.05] text-center">
+        <p class="text-[10px] text-white/40 font-black uppercase tracking-[0.3em]">
+          Member already?
+          <a routerLink="/client/login"
+            class="text-blue-500 hover:text-blue-400 transition-colors ml-1 underline underline-offset-4 decoration-blue-500/30">Login
+            as Client</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

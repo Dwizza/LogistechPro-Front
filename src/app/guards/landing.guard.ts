@@ -8,7 +8,7 @@ export const landingGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   if (!auth.isAuthenticated()) {
-    return router.createUrlTree(['/login']);
+    return router.createUrlTree(['/client/login']);
   }
 
   const roles = auth.getRoles();
