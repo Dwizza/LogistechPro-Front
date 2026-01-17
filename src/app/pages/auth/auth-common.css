@@ -1,11 +1,13 @@
-/* Neo-Minimalist Auth Styles - High Contrast Edition */
-:root {
-    --bg-space: #000000;
-    /* Pure black for maximum OLED contrast */
-    --card-dark: rgba(12, 12, 12, 0.95);
-    --border-glow: rgba(255, 255, 255, 0.2);
+/* Luxe Slate: Auth Local Refinements */
+.bg-luxe-slate {
+    background-color: #0f172a;
+    background-image:
+        radial-gradient(circle at 50% -20%, #1e293b 0%, transparent 80%),
+        radial-gradient(circle at 0% 100%, #020617 0%, transparent 50%);
+    min-height: 100vh;
 }
 
+/* Animations and other shared local auth styles if needed */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -18,99 +20,6 @@
     }
 }
 
-@keyframes shake {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-4px);
-    }
-
-    75% {
-        transform: translateX(4px);
-    }
-}
-
 .animate-fadeIn {
-    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.animate-shake {
-    animation: shake 0.4s ease-in-out;
-}
-
-.bg-space {
-    background-color: var(--bg-space);
-    background-image:
-        radial-gradient(circle at 50% -20%, #111 0%, transparent 70%),
-        radial-gradient(circle at 0% 100%, #050505 0%, transparent 50%);
-    min-height: 100vh;
-}
-
-.neo-card {
-    background: var(--card-dark);
-    backdrop-filter: blur(40px);
-    border: 1px solid var(--border-glow);
-    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 1);
-}
-
-.glow-input {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glow-input:focus {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-}
-
-.label-vivid {
-    color: rgba(255, 255, 255, 0.75) !important;
-    font-weight: 800 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 10px;
-}
-
-.btn-neon-emerald {
-    background: #10b981;
-    color: white !important;
-    font-weight: 900;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
-}
-
-.btn-neon-emerald:hover:not(:disabled) {
-    background: #34d399;
-    box-shadow: 0 0 45px rgba(16, 185, 129, 0.6);
-    transform: translateY(-2px);
-}
-
-.btn-neon-blue {
-    background: #3b82f6;
-    color: white !important;
-    font-weight: 900;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
-}
-
-.btn-neon-blue:hover:not(:disabled) {
-    background: #60a5fa;
-    box-shadow: 0 0 45px rgba(59, 130, 246, 0.6);
-    transform: translateY(-2px);
-}
-
-.disabled-glow {
-    opacity: 0.2;
-    cursor: not-allowed;
-    filter: grayscale(1);
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

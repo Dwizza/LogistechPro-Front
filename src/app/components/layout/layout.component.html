@@ -1,6 +1,8 @@
-<div class="flex h-screen bg-gray-50 overflow-hidden">
-    <app-sidebar class="flex-shrink-0"></app-sidebar>
-    <main class="flex-1 overflow-y-auto overflow-x-hidden">
-        <router-outlet></router-outlet>
+<div class="flex h-screen bg-cyber-luxe overflow-hidden">
+    <app-sidebar class="flex-shrink-0 relative z-20"></app-sidebar>
+    <main class="flex-1 overflow-y-auto overflow-x-hidden relative z-10 custom-scrollbar">
+        <div class="relative z-20">
+            <router-outlet></router-outlet>
+        </div>
     </main>
 </div>

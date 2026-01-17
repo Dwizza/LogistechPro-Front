@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 
 export type LoginResponse = {
-  accessToken: string;
-  refreshToken: string;
+  accessToken?: string;
+  refreshToken?: string;
+  access_token?: string;
+  refresh_token?: string;
 };
 
 @Injectable({ providedIn: 'root' })
@@ -21,7 +23,11 @@ export class AuthService {
       .post<LoginResponse>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap((res) => {
-          this.saveTokens(res.accessToken, res.refreshToken);
+          const access = res.accessToken || res.access_token;
+          const refresh = res.refreshToken || res.refresh_token;
+          if (access && refresh) {
+            this.saveTokens(access, refresh);
+          }
         })
       );
   }
@@ -29,7 +35,7 @@ export class AuthService {
 
   loginWithRoleCheck(email: string, password: string, allowedRoles: string[]): Observable<LoginResponse> {
     return this.login(email, password).pipe(
-      tap((res) => {
+      tap(() => {
         const roles = this.getRoles();
         const hasPermission = allowedRoles.some(role => roles.includes(role));
         if (!hasPermission) {
@@ -64,13 +70,14 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.getAccessToken();
+    const token = this.getAccessToken();
+    return !!token && token !== 'undefined' && token !== 'null';
   }
 
 
   private getPayload(): any | null {
     const token = this.getAccessToken();
-    if (!token) return null;
+    if (!token || token === 'undefined' || token === 'null') return null;
 
     try {
       const payloadPart = token.split('.')[1];
@@ -83,7 +90,19 @@ export class AuthService {
 
   getRoles(): string[] {
     const payload = this.getPayload();
-    return payload?.roles || [];
+    if (!payload) return [];
+
+    const roles = payload.roles || payload.authorities || payload.role || [];
+
+    if (Array.isArray(roles)) {
+      return roles.map(r => typeof r === 'string' ? r : (r.authority || r.name || JSON.stringify(r)));
+    }
+
+    if (typeof roles === 'string') {
+      return [roles];
+    }
+
+    return [];
   }
 
   hasRole(role: string): boolean {

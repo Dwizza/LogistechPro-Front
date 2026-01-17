@@ -59,11 +59,11 @@ export class ManagerDashboardComponent {
 
   getStatusColor(status: string): string {
     const colors: { [key: string]: string } = {
-      'Delivered': 'bg-green-100 text-green-800',
-      'In Transit': 'bg-blue-100 text-blue-800',
-      'Loading': 'bg-yellow-100 text-yellow-800',
-      'Pending': 'bg-purple-100 text-purple-800'
+      'Delivered': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+      'In Transit': 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+      'Loading': 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+      'Pending': 'bg-purple-500/10 text-purple-400 border-purple-500/20'
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colors[status] || 'bg-white/5 text-white/40 border-white/10';
   }
 }

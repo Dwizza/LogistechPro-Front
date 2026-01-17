@@ -22,7 +22,9 @@ export class RegisterClientComponent {
     form = this.fb.group({
         name: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]]
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        telephone: ['', [Validators.required]],
+        address: ['', [Validators.required]]
     });
 
     submit() {
@@ -51,4 +53,6 @@ export class RegisterClientComponent {
     get nameControl() { return this.form.get('name'); }
     get emailControl() { return this.form.get('email'); }
     get passwordControl() { return this.form.get('password'); }
+    get telephoneControl() { return this.form.get('telephone'); }
+    get addressControl() { return this.form.get('address'); }
 }
