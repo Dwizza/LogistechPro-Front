@@ -108,18 +108,18 @@
         <div class="cyber-card rounded-[2rem] p-8 border-white/5 radiant-border radiant-violet">
           <h2 class="text-lg font-black text-white uppercase tracking-tight mb-6">Quick Actions</h2>
           <div class="space-y-3">
-            <button *ngFor="let action of quickActions"
-              class="w-full flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-violet-500/20 hover:bg-violet-500/5 transition-all group">
+            <a *ngFor="let action of quickActions" [routerLink]="action.path"
+              class="w-full flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/20 hover:bg-emerald-500/5 transition-all group">
               <div
-                class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:border-violet-500/30 transition-colors">
-                <svg class="w-5 h-5 accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:border-emerald-500/30 transition-colors">
+                <svg class="w-5 h-5 accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="action.icon"></path>
                 </svg>
               </div>
               <span
                 class="text-[10px] font-black text-white/70 uppercase tracking-widest group-hover:text-white transition-colors">{{
                 action.title }}</span>
-            </button>
+            </a>
           </div>
         </div>
 

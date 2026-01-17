@@ -13,6 +13,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LayoutComponent } from './components/layout/layout.component';
 
 import { CreateManagerComponent } from './pages/admin/manage-managers/create-manager.component';
+import { ManageWarehousesComponent } from './pages/admin/manage-warehouses/manage-warehouses.component';
 
 export const routes: Routes = [
 
@@ -29,6 +30,7 @@ export const routes: Routes = [
         children: [
             { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/managers/create', component: CreateManagerComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
+            { path: 'admin/warehouses', component: ManageWarehousesComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'manager/dashboard', component: ManagerDashboardComponent, canActivate: [roleGuard(['ROLE_WAREHOUSE_MANAGER'])] },
         ]
     },
