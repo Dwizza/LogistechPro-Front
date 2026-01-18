@@ -1,29 +1,29 @@
-<aside
+<aside [attr.data-theme]="currentTheme"
     class="w-56 h-screen bg-black/40 backdrop-blur-2xl border-r border-white/5 flex flex-col relative z-20 shadow-xl">
-    
+
     <div class="h-20 flex items-center px-6 relative overflow-hidden group">
         <div
             class="w-10 h-10 bg-white/[0.05] border border-white/10 rounded-xl flex items-center justify-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-emerald-500/10"></div>
-            <svg class="w-6 h-6 accent-emerald relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="absolute inset-0" [ngClass]="'theme-bg-' + currentTheme"></div>
+            <svg class="w-6 h-6 relative z-10" [ngClass]="'accent-' + currentTheme" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
             </svg>
         </div>
         <div class="ml-3">
             <h1 class="font-black text-[10px] text-white uppercase tracking-[0.3em]">Logis<span
-                    class="accent-emerald">Tech</span></h1>
+                    [ngClass]="'accent-' + currentTheme">Tech</span></h1>
             <p class="text-[7px] text-white/30 font-black tracking-[0.4em] uppercase">Enterprise</p>
         </div>
     </div>
 
-    
+
     <nav class="flex-1 px-3 py-6 space-y-2 overflow-y-auto custom-scrollbar">
-        <a *ngFor="let item of menuItems" [routerLink]="item.path"
-            routerLinkActive="!bg-emerald-500/[0.05] !border-emerald-500/20 !text-white active-link"
+        <a *ngFor="let item of menuItems" [routerLink]="item.path" routerLinkActive="active-link"
             class="flex items-center gap-4 px-5 py-3.5 text-[10px] font-black text-white/50 rounded-xl border border-transparent hover:bg-white/[0.05] hover:border-white/10 hover:text-white transition-all group relative">
-            <div
-                class="absolute left-0 w-0.5 h-0 bg-emerald-500 rounded-full transition-all duration-300 group-[.active-link]:h-4">
+            <div class="absolute left-0 w-0.5 h-0 rounded-full transition-all duration-300 group-[.active-link]:h-4"
+                [ngClass]="'theme-bg-solid-' + currentTheme">
             </div>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon"></path>
@@ -32,18 +32,20 @@
         </a>
     </nav>
 
-    
+
     <div class="p-4">
-        <div class="cyber-card rounded-2xl p-4 border-white/5 radiant-border radiant-emerald shadow-lg">
+        <div class="cyber-card rounded-[2rem] p-4 border-white/5 radiant-border shadow-lg"
+            [ngClass]="'radiant-' + currentTheme">
             <div class="flex items-center gap-3 mb-4">
-                <div
-                    class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center border border-emerald-500/10">
+                <div class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center border"
+                    [ngClass]="'theme-border-' + currentTheme">
                     <span class="text-white font-black text-xs">{{ getRoleInitial() }}</span>
                 </div>
                 <div class="flex-1 min-w-0">
                     <p class="text-[9px] font-black text-white uppercase tracking-wider truncate">{{ getRoleName() }}
                     </p>
-                    <p class="text-[7px] text-emerald-500/60 font-black uppercase tracking-widest mt-0.5">Secure Session
+                    <p class="text-[7px] font-black uppercase tracking-widest mt-0.5"
+                        [ngClass]="'theme-text-' + currentTheme">Secure Session
                     </p>
                 </div>
             </div>

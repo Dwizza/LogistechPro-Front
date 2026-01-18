@@ -19,6 +19,7 @@ interface MenuItem {
 export class SidebarComponent implements OnInit {
   menuItems: MenuItem[] = [];
   userRoles: string[] = [];
+  currentTheme: 'emerald' | 'pink' = 'emerald';
 
   constructor(
     private authService: AuthService,
@@ -28,6 +29,21 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.userRoles = this.authService.getRoles();
     this.setMenuItems();
+    this.updateTheme();
+
+    // Listen to route changes to update theme
+    this.router.events.subscribe(() => {
+      this.updateTheme();
+    });
+  }
+
+  updateTheme(): void {
+    const url = this.router.url;
+    if (url.includes('/manager')) {
+      this.currentTheme = 'pink';
+    } else {
+      this.currentTheme = 'emerald';
+    }
   }
 
   getRoleInitial(): string {

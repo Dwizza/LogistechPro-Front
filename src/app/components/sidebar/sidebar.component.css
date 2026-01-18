@@ -1,0 +1,13 @@
+.active-link {
+    color: white !important;
+}
+
+[data-theme='emerald'] .active-link {
+    background-color: rgba(16, 185, 129, 0.05) !important;
+    border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+[data-theme='pink'] .active-link {
+    background-color: rgba(217, 70, 239, 0.05) !important;
+    border-color: rgba(217, 70, 239, 0.2) !important;
+}

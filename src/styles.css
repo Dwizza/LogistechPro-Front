@@ -86,6 +86,10 @@
     background: linear-gradient(90deg, transparent, var(--cyber-violet), transparent);
 }
 
+.radiant-pink::before {
+    background: linear-gradient(90deg, transparent, #d946ef, transparent);
+}
+
 .text-cyber-white {
     color: #f8fafc !important;
 }
@@ -100,6 +104,42 @@
 
 .accent-violet {
     color: var(--cyber-violet) !important;
+}
+
+.accent-pink {
+    color: #f0abfc !important;
+}
+
+.theme-bg-emerald {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+.theme-bg-pink {
+    background-color: rgba(217, 70, 239, 0.1) !important;
+}
+
+.theme-border-emerald {
+    border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.theme-border-pink {
+    border-color: rgba(217, 70, 239, 0.2) !important;
+}
+
+.theme-text-emerald {
+    color: rgba(16, 185, 129, 0.6) !important;
+}
+
+.theme-text-pink {
+    color: rgba(217, 70, 239, 0.6) !important;
+}
+
+.theme-bg-solid-emerald {
+    background-color: #10b981 !important;
+}
+
+.theme-bg-solid-pink {
+    background-color: #d946ef !important;
 }
 
 .label-cyber {
