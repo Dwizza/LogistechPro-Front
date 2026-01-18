@@ -104,4 +104,17 @@ export class AuthService {
   hasRole(role: string): boolean {
     return this.getRoles().includes(role);
   }
+
+  refreshToken(): Observable<LoginResponse> {
+    const refreshToken = this.getRefreshToken();
+    return this.http.post<LoginResponse>(`${this.apiUrl}/refresh`, { refreshToken }).pipe(
+      tap((res) => {
+        const access = res.accessToken || res.access_token;
+        const refresh = res.refreshToken || res.refresh_token;
+        if (access && refresh) {
+          this.saveTokens(access, refresh);
+        }
+      })
+    );
+  }
 }

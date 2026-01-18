@@ -29,7 +29,7 @@ export const routes: Routes = [
         canActivate: [authGuard],
         children: [
             { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
-            { path: 'admin/managers/create', component: CreateManagerComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
+            { path: 'admin/managers', component: CreateManagerComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/warehouses', component: ManageWarehousesComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/products', loadComponent: () => import('./pages/admin/manage-products/manage-products.component').then(m => m.ManageProductsComponent), canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/inventory', loadComponent: () => import('./pages/admin/manage-inventory/manage-inventory.component').then(m => m.ManageInventoryComponent), canActivate: [roleGuard(['ROLE_ADMIN'])] },

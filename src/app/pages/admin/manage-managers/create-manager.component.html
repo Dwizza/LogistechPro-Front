@@ -1,12 +1,11 @@
 <div class="p-6 lg:p-10 min-h-screen">
     <div class="max-w-[1400px] mx-auto space-y-8 animate-fadeIn">
 
-        
+        <!-- Unified Admin Header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div class="flex items-center gap-5">
                 <div
-                    class="w-14 h-14 cyber-card rounded-2xl flex items-center justify-center border-white/10 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-emerald-500/10 transition-colors"></div>
+                    class="w-14 h-14 cyber-card rounded-2xl flex items-center justify-center relative overflow-hidden radiant-border radiant-emerald">
                     <svg class="w-7 h-7 accent-emerald relative z-10" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -17,7 +16,7 @@
                 <div>
                     <h1 class="text-2xl font-black text-white tracking-tight uppercase">Registry Desk</h1>
                     <p class="text-emerald-500/60 text-[10px] font-black uppercase tracking-widest mt-1">Personnel <span
-                            class="text-white">/ Archive Hub</span></p>
+                            class="text-white/40">/ Archive Hub</span></p>
                 </div>
             </div>
 
@@ -29,14 +28,13 @@
             </button>
         </div>
 
-        
+        <!-- Messages -->
         <div *ngIf="message" class="animate-fadeIn">
-            <div
-                [class]="'px-6 py-4 rounded-2xl border flex items-center justify-between ' + (message.type === 'success' ? 'bg-emerald-500/5 border-emerald-500/10 text-emerald-400' : 'bg-red-500/5 border-red-500/10 text-red-400')">
+            <div [class]="message.type === 'success' ? 'bg-emerald-500/5 border-emerald-500/10 text-emerald-400' : 'bg-red-500/5 border-red-500/10 text-red-400'"
+                class="px-6 py-4 rounded-2xl border border-white/5 flex items-center justify-between">
                 <div class="flex items-center gap-4">
-                    <div
-                        [class]="'w-1.5 h-1.5 rounded-full animate-pulse ' + (message.type === 'success' ? 'bg-emerald-500' : 'bg-red-500')">
-                    </div>
+                    <div [class]="message.type === 'success' ? 'bg-emerald-500' : 'bg-red-500'"
+                        class="w-1.5 h-1.5 rounded-full animate-pulse"></div>
                     <span class="text-[9px] font-black uppercase tracking-[0.2em]">{{ message.text }}</span>
                 </div>
                 <button (click)="message = null" class="text-white/20 hover:text-white transition-colors">
@@ -48,36 +46,34 @@
             </div>
         </div>
 
-        
-        <div
-            class="cyber-card rounded-[2.5rem] border-white/10 overflow-hidden flex flex-col shadow-2xl animate-slideUp">
-            <div class="overflow-x-auto">
-                <table class="w-full">
+        <!-- Table Container -->
+        <div class="cyber-card rounded-[2.5rem] overflow-hidden flex flex-col shadow-2xl animate-slideUp">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-white/[0.02]">
-                            <th class="px-10 py-5 text-left label-cyber">Identity</th>
-                            <th class="px-10 py-5 text-left label-cyber">Secure Email</th>
-                            <th class="px-10 py-5 text-left label-cyber">Access Clearance</th>
-                            <th class="px-10 py-5 text-right label-cyber">Network Operations</th>
+                        <tr class="bg-white/[0.02] border-b border-white/5">
+                            <th class="px-10 py-6 label-cyber">Identity</th>
+                            <th class="px-10 py-6 label-cyber">Secure Email</th>
+                            <th class="px-10 py-6 label-cyber">Access Clearance</th>
+                            <th class="px-10 py-6 label-cyber text-right">Network Operations</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/5">
+                    <tbody class="divide-y divide-white/[0.03]">
                         <tr *ngIf="fetching" class="animate-pulse">
                             <td colspan="4"
-                                class="px-10 py-6 text-center text-[10px] text-white/20 uppercase tracking-[0.5em]">
+                                class="px-10 py-10 text-center text-[10px] text-white/20 uppercase tracking-[0.5em]">
                                 Synchronizing Registry...</td>
                         </tr>
                         <tr *ngIf="!fetching && managers.length === 0">
                             <td colspan="4"
-                                class="px-10 py-6 text-center text-[10px] text-white/20 uppercase tracking-[0.5em]">No
+                                class="px-10 py-10 text-center text-[10px] text-white/20 uppercase tracking-[0.5em]">No
                                 active nodes found</td>
                         </tr>
-                        <tr *ngFor="let manager of managers"
-                            class="group hover:bg-emerald-500/[0.02] transition-all cursor-pointer">
+                        <tr *ngFor="let manager of managers" class="group hover:bg-emerald-500/[0.02] transition-all">
                             <td class="px-10 py-6">
                                 <div class="flex items-center gap-4">
                                     <div
-                                        class="w-10 h-10 bg-white/5 rounded-xl border border-white/5 flex items-center justify-center text-emerald-400 font-black text-xs uppercase">
+                                        class="w-10 h-10 bg-white/[0.03] border border-white/10 rounded-xl flex items-center justify-center text-emerald-400 font-black text-xs uppercase">
                                         {{ manager.name.charAt(0) }}
                                     </div>
                                     <span class="text-sm font-black text-white/90 tracking-wide uppercase">{{
@@ -93,11 +89,11 @@
                                     Manager_Auth
                                 </span>
                             </td>
-                            <td class="px-10 py-6">
+                            <td class="px-10 py-6 text-right">
                                 <div
-                                    class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    class="flex items-center justify-end gap-3 md:opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button (click)="openEditModal(manager); $event.stopPropagation()"
-                                        class="p-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white/60 hover:text-white transition-all">
+                                        class="p-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white/40 hover:text-white transition-all">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
@@ -105,7 +101,7 @@
                                         </svg>
                                     </button>
                                     <button (click)="onDelete(manager.id); $event.stopPropagation()"
-                                        class="p-2.5 bg-red-500/5 hover:bg-red-500/10 border border-red-500/10 rounded-xl text-red-400/60 hover:text-red-400 transition-all">
+                                        class="p-2.5 bg-rose-500/5 hover:bg-rose-500/10 border border-rose-500/10 rounded-xl text-rose-400/40 hover:text-rose-400 transition-all">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
@@ -121,14 +117,12 @@
         </div>
     </div>
 
-    
+    <!-- Modal System -->
     <div *ngIf="isModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-6 animate-fadeIn">
-        
-        <div (click)="closeModal()" class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+        <div (click)="closeModal()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
 
-        
         <div
-            class="relative w-full max-w-lg cyber-card rounded-[3rem] p-10 border-white/10 shadow-3xl radiant-border radiant-emerald animate-slideUp">
+            class="relative w-full max-w-lg cyber-card rounded-[3rem] p-10 radiant-border radiant-emerald animate-slideUp shadow-3xl">
             <div class="flex items-center justify-between mb-10">
                 <div>
                     <h2 class="text-2xl font-black text-white uppercase tracking-tight">{{ isEditMode ? 'Modify Access'
@@ -162,7 +156,7 @@
 
                 <div class="space-y-3">
                     <label class="label-cyber ml-1">Access Key (Password) <span *ngIf="isEditMode"
-                            class="text-white/20 italic font-normal text-[8px] tracking-normal">(Keep empty to remain
+                            class="text-white/20 italic font-normal text-[8px] tracking-normal ml-2">(Empty to keep
                             unchanged)</span></label>
                     <input type="password" formControlName="password"
                         class="w-full bg-white/[0.03] border border-white/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm transition-all"
@@ -170,7 +164,7 @@
                 </div>
 
                 <button type="submit" [disabled]="loading || managerForm.invalid"
-                    class="w-full py-5 rounded-2xl btn-cyber-emerald disabled:opacity-20 flex items-center justify-center gap-4 relative overflow-hidden group">
+                    class="w-full py-5 rounded-2xl btn-cyber-emerald disabled:opacity-20 flex items-center justify-center gap-4 group">
                     <svg *ngIf="loading" class="animate-spin h-5 w-5" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
                         </circle>
