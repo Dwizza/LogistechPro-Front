@@ -14,6 +14,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 
 import { CreateManagerComponent } from './pages/admin/manage-managers/create-manager.component';
 import { ManageWarehousesComponent } from './pages/admin/manage-warehouses/manage-warehouses.component';
+import { ManagePurchaseOrdersComponent as AdminManagePO } from './pages/admin/manage-purchase-orders/manage-purchase-orders.component';
+import { ManagePurchaseOrdersComponent as ManagerManagePO } from './pages/manager/manage-purchase-orders/manage-purchase-orders.component';
 
 export const routes: Routes = [
 
@@ -31,9 +33,11 @@ export const routes: Routes = [
             { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/managers', component: CreateManagerComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/warehouses', component: ManageWarehousesComponent, canActivate: [roleGuard(['ROLE_ADMIN'])] },
+            { path: 'admin/purchase-orders', component: AdminManagePO, canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/products', loadComponent: () => import('./pages/admin/manage-products/manage-products.component').then(m => m.ManageProductsComponent), canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/inventory', loadComponent: () => import('./pages/admin/manage-inventory/manage-inventory.component').then(m => m.ManageInventoryComponent), canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'manager/dashboard', component: ManagerDashboardComponent, canActivate: [roleGuard(['ROLE_WAREHOUSE_MANAGER'])] },
+            { path: 'manager/purchase-orders', component: ManagerManagePO, canActivate: [roleGuard(['ROLE_WAREHOUSE_MANAGER'])] },
         ]
     },
 

@@ -1,0 +1,215 @@
+<div class="p-6 lg:p-10 min-h-screen">
+    <div class="max-w-[1400px] mx-auto space-y-8 animate-fadeIn">
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="flex items-center gap-5">
+                <div
+                    class="w-14 h-14 cyber-card rounded-2xl flex items-center justify-center relative overflow-hidden radiant-border radiant-pink">
+                    <svg class="w-7 h-7 accent-pink relative z-10" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black text-white tracking-tight uppercase">Acquisition Stream</h1>
+                    <p class="text-fuchsia-500/60 text-[10px] font-black uppercase tracking-widest mt-1">Node Operations
+                        <span class="text-white/40">/ Resource Inflow</span>
+                    </p>
+                </div>
+            </div>
+
+            <button (click)="openCreateModal()" class="btn-cyber-pink px-6 py-3 rounded-xl flex items-center gap-3">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Deploy Supply Request
+            </button>
+        </div>
+
+        <!-- Alerts -->
+        <div *ngIf="errorMsg || successMsg" class="animate-fadeIn">
+            <div *ngIf="errorMsg"
+                class="px-6 py-4 bg-rose-500/5 border border-rose-500/10 rounded-2xl flex items-center justify-between text-rose-400">
+                <span class="text-[9px] font-black uppercase tracking-widest">{{errorMsg}}</span>
+                <button (click)="errorMsg = ''" class="text-white/20 hover:text-white"><svg class="w-4 h-4" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg></button>
+            </div>
+            <div *ngIf="successMsg"
+                class="px-6 py-4 bg-fuchsia-500/5 border border-fuchsia-500/10 rounded-2xl flex items-center justify-between text-fuchsia-400">
+                <span class="text-[9px] font-black uppercase tracking-widest">{{successMsg}}</span>
+            </div>
+        </div>
+
+        <!-- PO List -->
+        <div class="cyber-card-pink rounded-[2.5rem] overflow-hidden flex flex-col shadow-2xl animate-slideUp">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-white/[0.02] border-b border-white/5">
+                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Vector ID</th>
+                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Supplier Node</th>
+                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Storage Node</th>
+                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Time Stamp</th>
+                            <th class="px-10 py-6 label-cyber-pink text-right text-[9px]">Total Energy</th>
+                            <th class="px-10 py-6 label-cyber-pink text-center text-[9px]">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/[0.03]">
+                        <tr *ngIf="purchaseOrders.length === 0 && !loading">
+                            <td colspan="6"
+                                class="px-10 py-10 text-center text-[10px] text-white/10 uppercase tracking-[0.5em]">No
+                                Active Transmissions</td>
+                        </tr>
+                        <tr *ngFor="let po of purchaseOrders" class="group hover:bg-fuchsia-500/[0.02] transition-all">
+                            <td class="px-10 py-6 font-mono text-xs font-black text-fuchsia-400 tracking-widest">
+                                #{{ po.id }}
+                            </td>
+                            <td class="px-10 py-6">
+                                <span class="text-xs font-black text-white/90 uppercase">{{ po.supplierName }}</span>
+                            </td>
+                            <td class="px-10 py-6">
+                                <span class="text-sm font-black text-white/90 uppercase">{{ po.warehouseName }}</span>
+                            </td>
+                            <td class="px-10 py-6 text-[10px] text-white/40 uppercase font-bold">
+                                {{ po.createdAt | date:'medium' }}
+                            </td>
+                            <td class="px-10 py-6 text-right font-black text-white/90">
+                                {{ po.totalAmount | currency }}
+                            </td>
+                            <td class="px-10 py-6 text-center">
+                                <span [class]="getStatusClass(po.status)"
+                                    class="px-3 py-1 border rounded-lg text-[9px] font-black uppercase tracking-widest">
+                                    {{ po.status }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="loading"
+                class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-30">
+                <div
+                    class="h-10 w-10 border-[3px] border-fuchsia-500/10 border-t-fuchsia-500 rounded-full animate-spin">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create PO Modal -->
+    <div *ngIf="showModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 animate-fadeIn">
+        <div (click)="closeModal()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div
+            class="relative w-full max-w-4xl cyber-card-pink rounded-[3rem] p-10 radiant-border radiant-pink animate-slideUp shadow-3xl max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex items-center justify-between mb-10">
+                <div>
+                    <h2 class="text-2xl font-black text-white uppercase tracking-tight">Supply Initialization</h2>
+                    <p class="text-[9px] text-fuchsia-500/50 font-black uppercase tracking-[0.3em] mt-1">Resource
+                        Acquisition Protocol</p>
+                </div>
+                <button (click)="closeModal()"
+                    class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <form [formGroup]="poForm" (ngSubmit)="submit()" class="space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-3">
+                        <label class="label-cyber-pink ml-1">Source Supplier Node</label>
+                        <select formControlName="supplierId"
+                            class="w-full bg-white/[0.03] border border-white/5 focus:border-fuchsia-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm transition-all appearance-none cursor-pointer">
+                            <option [value]="null" disabled>Select Supplier</option>
+                            <option *ngFor="let s of suppliers" [value]="s.id" class="bg-slate-900">{{ s.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="space-y-3">
+                        <label class="label-cyber-pink ml-1">Target Storage Node</label>
+                        <select formControlName="warehouseId"
+                            class="w-full bg-white/[0.03] border border-white/5 focus:border-fuchsia-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm transition-all appearance-none cursor-pointer">
+                            <option [value]="null" disabled>Select Node</option>
+                            <option *ngFor="let w of warehouses" [value]="w.id" class="bg-slate-900">{{ w.name }} [{{
+                                w.code }}]</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Items Section -->
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between px-1">
+                        <h3 class="label-cyber-pink">Asset Vector Configuration</h3>
+                        <button type="button" (click)="addItem()"
+                            class="text-[10px] font-black text-fuchsia-400 uppercase tracking-widest hover:text-fuchsia-300 transition-all">
+                            + Initialize Item
+                        </button>
+                    </div>
+
+                    <div formArrayName="lines" class="space-y-4">
+                        <div *ngFor="let item of lines.controls; let i=index" [formGroupName]="i"
+                            class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end bg-white/[0.01] p-6 rounded-2xl border border-white/5 hover:border-fuchsia-500/20 transition-all group">
+                            <div class="md:col-span-6 space-y-2">
+                                <label class="text-[8px] font-black text-white/20 uppercase tracking-wider">Asset
+                                    Protocol</label>
+                                <select formControlName="productId"
+                                    class="w-full bg-black/20 border border-white/5 focus:border-fuchsia-500/30 px-4 py-3 rounded-xl outline-none text-white text-xs transition-all cursor-pointer">
+                                    <option [value]="null" disabled>Select Asset</option>
+                                    <option *ngFor="let p of products" [value]="p.id" class="bg-slate-900">{{ p.name }}
+                                        [{{ p.sku }}]</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2 space-y-2">
+                                <label
+                                    class="text-[8px] font-black text-white/20 uppercase tracking-wider">Mass/Qty</label>
+                                <input type="number" formControlName="quantity"
+                                    class="w-full bg-black/20 border border-white/5 focus:border-fuchsia-500/30 px-4 py-3 rounded-xl outline-none text-white text-xs transition-all font-mono">
+                            </div>
+                            <div class="md:col-span-3 space-y-2">
+                                <label
+                                    class="text-[8px] font-black text-white/20 uppercase tracking-wider">Energy/Price</label>
+                                <input type="number" formControlName="unitPrice"
+                                    class="w-full bg-black/20 border border-white/5 focus:border-fuchsia-500/30 px-4 py-3 rounded-xl outline-none text-white text-xs transition-all font-mono">
+                            </div>
+                            <div class="md:col-span-1 text-right">
+                                <button type="button" (click)="removeItem(i)"
+                                    class="p-3 text-white/10 hover:text-rose-500 hover:bg-rose-500/10 rounded-xl transition-all">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-white/5">
+                    <div class="text-left px-2">
+                        <p class="text-[8px] font-black text-white/20 uppercase tracking-[0.3em] mb-1">Estimated
+                            Acquisition Cost</p>
+                        <p class="text-3xl font-black text-fuchsia-400 tracking-tight">{{ calculateTotal() | currency }}
+                        </p>
+                    </div>
+                    <button type="submit" [disabled]="submitting || poForm.invalid || lines.length === 0"
+                        class="btn-cyber-pink-large px-12 py-5 rounded-2xl disabled:opacity-20 flex items-center gap-4 transition-all overflow-hidden group">
+                        <span class="tracking-[0.4em] uppercase font-black">{{ submitting ? 'Transmitting Data...' :
+                            'Authorize Inflow' }}</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
