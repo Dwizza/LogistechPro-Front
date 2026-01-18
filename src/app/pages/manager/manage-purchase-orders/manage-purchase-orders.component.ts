@@ -30,6 +30,8 @@ export class ManagePurchaseOrdersComponent implements OnInit {
     loading = false;
     submitting = false;
     showModal = false;
+    selectedOrder: PurchaseOrder | null = null;
+    showDetailsModal = false;
     errorMsg = '';
     successMsg = '';
 
@@ -106,6 +108,13 @@ export class ManagePurchaseOrdersComponent implements OnInit {
 
     closeModal(): void {
         this.showModal = false;
+        this.showDetailsModal = false;
+        this.selectedOrder = null;
+    }
+
+    viewDetails(po: PurchaseOrder): void {
+        this.selectedOrder = po;
+        this.showDetailsModal = true;
     }
 
     submit(): void {
@@ -147,6 +156,10 @@ export class ManagePurchaseOrdersComponent implements OnInit {
             const g = control.value;
             return acc + (g.quantity * (g.unitPrice || 0));
         }, 0);
+    }
+
+    calculateOrderTotal(po: PurchaseOrder): number {
+        return po.lines?.reduce((acc, line) => acc + (line.quantity * (line.unitPrice || 0)), 0) || po.totalAmount || 0;
     }
 
     getStatusClass(status: string): string {

@@ -57,6 +57,7 @@
                             <th class="px-10 py-6 label-cyber-pink text-[9px]">Time Stamp</th>
                             <th class="px-10 py-6 label-cyber-pink text-right text-[9px]">Total Energy</th>
                             <th class="px-10 py-6 label-cyber-pink text-center text-[9px]">Status</th>
+                            <th class="px-10 py-6 label-cyber-pink text-right text-[9px]">Operations</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/[0.03]">
@@ -86,6 +87,18 @@
                                     class="px-3 py-1 border rounded-lg text-[9px] font-black uppercase tracking-widest">
                                     {{ po.status }}
                                 </span>
+                            </td>
+                            <td class="px-10 py-6 text-right">
+                                <button (click)="viewDetails(po)"
+                                    class="p-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white/40 hover:text-white transition-all">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                        </path>
+                                    </svg>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -210,6 +223,89 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- PO Details Modal -->
+    <div *ngIf="showDetailsModal && selectedOrder"
+        class="fixed inset-0 z-[100] flex items-center justify-center p-6 animate-fadeIn">
+        <div (click)="closeModal()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div
+            class="relative w-full max-w-3xl cyber-card-pink rounded-[3rem] p-10 radiant-border radiant-pink shadow-3xl max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl font-black text-white uppercase tracking-tight">Order Manifest</h2>
+                    <p class="text-[9px] text-fuchsia-500/50 font-black uppercase tracking-[0.3em] mt-1">#{{
+                        selectedOrder.id }}</p>
+                </div>
+                <button (click)="closeModal()"
+                    class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                <div class="space-y-1">
+                    <p class="text-[8px] font-black text-white/20 uppercase tracking-widest">Supplier Node</p>
+                    <p class="text-sm font-black text-white uppercase font-mono">{{ selectedOrder.supplierName }}</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-[8px] font-black text-white/20 uppercase tracking-widest">Storage Node</p>
+                    <p class="text-sm font-black text-white uppercase font-mono">{{ selectedOrder.warehouseName }}</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-[8px] font-black text-white/20 uppercase tracking-widest">Initialization</p>
+                    <p class="text-xs font-black text-white/40 uppercase">{{ selectedOrder.createdAt | date:'medium' }}
+                    </p>
+                </div>
+                <div class="space-y-1 text-right">
+                    <p class="text-[8px] font-black text-white/20 uppercase tracking-widest">Protocol Status</p>
+                    <span [class]="getStatusClass(selectedOrder.status)"
+                        class="px-3 py-1 border rounded-lg text-[9px] font-black uppercase tracking-widest">
+                        {{ selectedOrder.status }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="bg-white/[0.02] rounded-2xl border border-white/5 overflow-hidden">
+                <table class="w-full text-left border-collapse font-bold">
+                    <thead>
+                        <tr class="bg-white/5 border-b border-white/5">
+                            <th class="px-6 py-4 text-[9px] font-black text-white/40 uppercase tracking-widest">Asset
+                            </th>
+                            <th
+                                class="px-6 py-4 text-[9px] font-black text-white/40 uppercase tracking-widest text-center">
+                                Qty</th>
+                            <th
+                                class="px-6 py-4 text-[9px] font-black text-white/40 uppercase tracking-widest text-right">
+                                Unit Price</th>
+                            <th
+                                class="px-6 py-4 text-[9px] font-black text-white/40 uppercase tracking-widest text-right">
+                                Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/[0.03]">
+                        <tr *ngFor="let item of selectedOrder.lines" class="text-xs text-white/70">
+                            <td class="px-6 py-4 text-white font-black">{{ item.productName }}</td>
+                            <td class="px-6 py-4 text-center font-mono">{{ item.quantity }}</td>
+                            <td class="px-6 py-4 text-right">{{ item.unitPrice | currency }}</td>
+                            <td class="px-6 py-4 text-right text-fuchsia-400">{{ (item.quantity * item.unitPrice) |
+                                currency }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="bg-white/5 font-black text-fuchsia-400">
+                            <td colspan="3"
+                                class="px-6 py-5 text-[9px] text-white/40 uppercase tracking-[0.2em] text-right">
+                                Manifest Valuation</td>
+                            <td class="px-6 py-5 text-right">{{ calculateOrderTotal(selectedOrder) | currency }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
