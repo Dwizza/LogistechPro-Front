@@ -66,7 +66,7 @@ export class CreateManagerComponent implements OnInit {
             email: manager.email,
             password: ''
         });
-        // Password optional on edit
+        
         this.managerForm.get('password')?.setValidators([Validators.minLength(6)]);
         this.isModalOpen = true;
         this.message = null;

@@ -41,7 +41,6 @@ export class LoginManagementComponent {
 
         this.loading = true;
 
-        // Only allow ROLE_ADMIN or ROLE_WAREHOUSE_MANAGER
         this.auth.loginWithRoleCheck(email, password, ['ROLE_ADMIN', 'ROLE_WAREHOUSE_MANAGER']).subscribe({
             next: () => {
                 const roles = this.auth.getRoles();

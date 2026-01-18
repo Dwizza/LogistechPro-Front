@@ -41,10 +41,10 @@ export class LoginClientComponent {
 
         this.loading = true;
 
-        // Only allow ROLE_CLIENT
+        
         this.auth.loginWithRoleCheck(email, password, ['ROLE_CLIENT']).subscribe({
             next: () => {
-                // Redirect to client home or dashboard (to be implemented)
+                
                 this.router.navigate(['/']);
             },
             error: (err) => {

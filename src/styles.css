@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* Cyber-Luxe Compact: Professional Dense Aesthetic */
+
 :root {
     --cyber-bg: #030712;
     --cyber-emerald: #10b981;
     --cyber-violet: #8b5cf6;
     --cyber-border: rgba(255, 255, 255, 0.05);
     --cyber-glass: rgba(15, 23, 42, 0.4);
-    /* Thinner glass */
+    
     --cyber-glass-border: rgba(255, 255, 255, 0.1);
 }
 

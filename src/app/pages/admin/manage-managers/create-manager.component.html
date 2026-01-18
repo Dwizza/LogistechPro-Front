@@ -1,7 +1,7 @@
 <div class="p-6 lg:p-10 min-h-screen">
     <div class="max-w-[1400px] mx-auto space-y-8 animate-fadeIn">
 
-        <!-- Compact Header Actions -->
+        
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div class="flex items-center gap-5">
                 <div
@@ -29,7 +29,7 @@
             </button>
         </div>
 
-        <!-- Density Message Bar -->
+        
         <div *ngIf="message" class="animate-fadeIn">
             <div
                 [class]="'px-6 py-4 rounded-2xl border flex items-center justify-between ' + (message.type === 'success' ? 'bg-emerald-500/5 border-emerald-500/10 text-emerald-400' : 'bg-red-500/5 border-red-500/10 text-red-400')">
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <!-- High-Density Management Table -->
+        
         <div
             class="cyber-card rounded-[2.5rem] border-white/10 overflow-hidden flex flex-col shadow-2xl animate-slideUp">
             <div class="overflow-x-auto">
@@ -121,12 +121,12 @@
         </div>
     </div>
 
-    <!-- Integrated CRUD Modal -->
+    
     <div *ngIf="isModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-6 animate-fadeIn">
-        <!-- Backdrop -->
+        
         <div (click)="closeModal()" class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
 
-        <!-- Modal Card -->
+        
         <div
             class="relative w-full max-w-lg cyber-card rounded-[3rem] p-10 border-white/10 shadow-3xl radiant-border radiant-emerald animate-slideUp">
             <div class="flex items-center justify-between mb-10">

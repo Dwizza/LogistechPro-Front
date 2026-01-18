@@ -1,7 +1,7 @@
 <div class="p-6 lg:p-8 min-h-screen">
   <div class="max-w-7xl mx-auto space-y-8">
 
-    <!-- Compact Professional Header -->
+    
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 animate-fadeIn">
       <div class="flex items-center gap-5">
         <div class="w-14 h-14 cyber-card rounded-2xl flex items-center justify-center border-white/10 relative group">
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <!-- Tighter Metrics Grid -->
+    
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-slideUp">
       <div *ngFor="let stat of stats"
         class="cyber-card rounded-3xl p-6 border-white/5 hover:border-emerald-500/20 transition-all duration-300 group radiant-border radiant-emerald">
@@ -52,9 +52,9 @@
       </div>
     </div>
 
-    <!-- Structured Content Grid -->
+    
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-slideUp" style="animation-delay: 0.1s">
-      <!-- Recent Orders: Clean & Dense -->
+      
       <div class="lg:col-span-2 cyber-card rounded-[2rem] border-white/5 overflow-hidden flex flex-col">
         <div class="px-8 py-6 border-b border-white/5 flex items-center justify-between">
           <h2 class="text-lg font-black text-white uppercase tracking-tight">Recent Deliveries</h2>
@@ -103,27 +103,27 @@
         </div>
       </div>
 
-      <!-- Quick Actions Sidebar -->
+      
       <div class="space-y-6">
         <div class="cyber-card rounded-[2rem] p-8 border-white/5 radiant-border radiant-violet">
           <h2 class="text-lg font-black text-white uppercase tracking-tight mb-6">Quick Actions</h2>
           <div class="space-y-3">
-            <a *ngFor="let action of quickActions" [routerLink]="action.path"
-              class="w-full flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/20 hover:bg-emerald-500/5 transition-all group">
+            <button *ngFor="let action of quickActions"
+              class="w-full flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-violet-500/20 hover:bg-violet-500/5 transition-all group">
               <div
-                class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:border-emerald-500/30 transition-colors">
-                <svg class="w-5 h-5 accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:border-violet-500/30 transition-colors">
+                <svg class="w-5 h-5 accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="action.icon"></path>
                 </svg>
               </div>
               <span
                 class="text-[10px] font-black text-white/70 uppercase tracking-widest group-hover:text-white transition-colors">{{
                 action.title }}</span>
-            </a>
+            </button>
           </div>
         </div>
 
-        <!-- Compact System Status -->
+        
         <div class="cyber-card rounded-[2rem] p-8 border-white/5">
           <p class="label-cyber mb-6">System Health</p>
           <div class="space-y-5">

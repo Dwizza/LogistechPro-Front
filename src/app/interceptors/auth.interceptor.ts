@@ -20,11 +20,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      // If unauthorized or forbidden (session expired), eject user
-      if (error.status === 401 || error.status === 403) {
+      
+      if (error.status === 401) {
         authService.logout();
 
-        // Decide where to redirect based on current URL path
+        
         const currentPath = window.location.pathname;
         if (currentPath.includes('/admin') || currentPath.includes('/manager')) {
           router.navigate(['/management/login']);

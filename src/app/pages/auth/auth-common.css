@@ -1,4 +1,4 @@
-/* Luxe Slate: Auth Local Refinements */
+
 .bg-luxe-slate {
     background-color: #0f172a;
     background-image:
@@ -7,7 +7,7 @@
     min-height: 100vh;
 }
 
-/* Animations and other shared local auth styles if needed */
+
 @keyframes fadeIn {
     from {
         opacity: 0;

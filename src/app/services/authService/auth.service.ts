@@ -12,7 +12,6 @@ export type LoginResponse = {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = 'http://localhost:8080/api/auth';
-
   private ACCESS_KEY = 'accessToken';
   private REFRESH_KEY = 'refreshToken';
 
@@ -32,7 +31,6 @@ export class AuthService {
       );
   }
 
-
   loginWithRoleCheck(email: string, password: string, allowedRoles: string[]): Observable<LoginResponse> {
     return this.login(email, password).pipe(
       tap(() => {
@@ -45,7 +43,6 @@ export class AuthService {
       })
     );
   }
-
 
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
@@ -73,7 +70,6 @@ export class AuthService {
     const token = this.getAccessToken();
     return !!token && token !== 'undefined' && token !== 'null';
   }
-
 
   private getPayload(): any | null {
     const token = this.getAccessToken();
