@@ -19,11 +19,17 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      if ((error.status === 401 || error.status === 403) && !req.url.includes('/auth/login') && !req.url.includes('/auth/refresh')) {
+      const isAuthUrl = req.url.includes('/auth/login') || req.url.includes('/auth/refresh');
+
+      // Only handle token refresh for 401 errors on non-auth URLs
+      if (error.status === 401 && !isAuthUrl) {
         return handle401Error(req, next, authService, router);
       }
 
-      if ((error.status === 401 || error.status === 403) && (req.url.includes('/auth/login') || req.url.includes('/auth/refresh'))) {
+      // If auth request fails with 401/403, or if it's a 403 on a normal request,
+      // we only logout if it's specifically an auth request failure.
+      // Business logic 403s (like duplicate email) should just be passed through.
+      if (isAuthUrl && (error.status === 401 || error.status === 403)) {
         authService.logout();
         redirectToLogin(router);
       }
