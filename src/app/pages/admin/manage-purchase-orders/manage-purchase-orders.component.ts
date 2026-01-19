@@ -120,8 +120,7 @@ export class ManagePurchaseOrdersComponent implements OnInit {
     addItem(): void {
         const itemGroup = this.fb.group({
             productId: [null as number | null, [Validators.required]],
-            quantity: [1, [Validators.required, Validators.min(1)]],
-            unitPrice: [0, [Validators.required, Validators.min(0)]]
+            quantity: [1, [Validators.required, Validators.min(1)]]
         });
         this.lines.push(itemGroup);
     }
@@ -139,11 +138,15 @@ export class ManagePurchaseOrdersComponent implements OnInit {
         this.submitting = true;
         this.errorMsg = '';
 
+        const formValue = this.poForm.value;
         const poData: PurchaseOrder = {
-            warehouseId: this.poForm.value.warehouseId!,
-            supplierId: this.poForm.value.supplierId!,
+            warehouseId: formValue.warehouseId!,
+            supplierId: formValue.supplierId!,
             status: 'CREATED',
-            lines: this.poForm.value.lines as PurchaseOrderItem[]
+            lines: (formValue.lines as any[]).map(line => ({
+                ...line,
+                unitPrice: this.getProductPrice(line.productId)
+            }))
         };
 
         this.poService.createPurchaseOrder(poData).subscribe({
@@ -164,8 +167,15 @@ export class ManagePurchaseOrdersComponent implements OnInit {
     calculateFormTotal(): number {
         return this.lines.controls.reduce((acc, control) => {
             const g = control.value;
-            return acc + (g.quantity * (g.unitPrice || 0));
+            const price = this.getProductPrice(g.productId);
+            return acc + (g.quantity * price);
         }, 0);
+    }
+
+    getProductPrice(productId: any): number {
+        if (productId === null || productId === undefined || !this.products.length) return 0;
+        const product = this.products.find(p => p.id == productId);
+        return product?.avgPrice || 0;
     }
 
     // Processing Logic

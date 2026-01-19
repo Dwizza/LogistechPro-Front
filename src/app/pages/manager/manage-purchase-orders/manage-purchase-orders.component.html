@@ -13,9 +13,9 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-black text-white tracking-tight uppercase">Acquisition Stream</h1>
-                    <p class="text-fuchsia-500/60 text-[10px] font-black uppercase tracking-widest mt-1">Node Operations
-                        <span class="text-white/40">/ Resource Inflow</span>
+                    <h1 class="text-2xl font-black text-white tracking-tight uppercase">Purchase Orders</h1>
+                    <p class="text-fuchsia-500/60 text-[10px] font-black uppercase tracking-widest mt-1">Manager
+                        <span class="text-white/40">/ Purchase Orders</span>
                     </p>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
-                Deploy Supply Request
+                create Purchase Order
             </button>
         </div>
 
@@ -51,13 +51,13 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-white/[0.02] border-b border-white/5">
-                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Vector ID</th>
-                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Supplier Node</th>
-                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Storage Node</th>
-                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Time Stamp</th>
-                            <th class="px-10 py-6 label-cyber-pink text-right text-[9px]">Total Energy</th>
+                            <th class="px-10 py-6 label-cyber-pink text-[9px]">ID</th>
+                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Supplier</th>
+                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Warehouse</th>
+                            <th class="px-10 py-6 label-cyber-pink text-[9px]">Date</th>
+                            <th class="px-10 py-6 label-cyber-pink text-right text-[9px]">Total Amount</th>
                             <th class="px-10 py-6 label-cyber-pink text-center text-[9px]">Status</th>
-                            <th class="px-10 py-6 label-cyber-pink text-right text-[9px]">Operations</th>
+                            <th class="px-10 py-6 label-cyber-pink text-right text-[9px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/[0.03]">
@@ -139,8 +139,8 @@
                         <label class="label-cyber-pink ml-1">Source Supplier Node</label>
                         <select formControlName="supplierId"
                             class="w-full bg-white/[0.03] border border-white/5 focus:border-fuchsia-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm transition-all appearance-none cursor-pointer">
-                            <option [value]="null" disabled>Select Supplier</option>
-                            <option *ngFor="let s of suppliers" [value]="s.id" class="bg-slate-900">{{ s.name }}
+                            <option [ngValue]="null" disabled>Select Supplier</option>
+                            <option *ngFor="let s of suppliers" [ngValue]="s.id" class="bg-slate-900">{{ s.name }}
                             </option>
                         </select>
                     </div>
@@ -148,8 +148,8 @@
                         <label class="label-cyber-pink ml-1">Target Storage Node</label>
                         <select formControlName="warehouseId"
                             class="w-full bg-white/[0.03] border border-white/5 focus:border-fuchsia-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm transition-all appearance-none cursor-pointer">
-                            <option [value]="null" disabled>Select Node</option>
-                            <option *ngFor="let w of warehouses" [value]="w.id" class="bg-slate-900">{{ w.name }} [{{
+                            <option [ngValue]="null" disabled>Select Node</option>
+                            <option *ngFor="let w of warehouses" [ngValue]="w.id" class="bg-slate-900">{{ w.name }} [{{
                                 w.code }}]</option>
                         </select>
                     </div>
@@ -173,8 +173,9 @@
                                     Protocol</label>
                                 <select formControlName="productId"
                                     class="w-full bg-black/20 border border-white/5 focus:border-fuchsia-500/30 px-4 py-3 rounded-xl outline-none text-white text-xs transition-all cursor-pointer">
-                                    <option [value]="null" disabled>Select Asset</option>
-                                    <option *ngFor="let p of products" [value]="p.id" class="bg-slate-900">{{ p.name }}
+                                    <option [ngValue]="null" disabled>Select Asset</option>
+                                    <option *ngFor="let p of products" [ngValue]="p.id" class="bg-slate-900">{{ p.name
+                                        }}
                                         [{{ p.sku }}]</option>
                                 </select>
                             </div>
@@ -184,11 +185,13 @@
                                 <input type="number" formControlName="quantity"
                                     class="w-full bg-black/20 border border-white/5 focus:border-fuchsia-500/30 px-4 py-3 rounded-xl outline-none text-white text-xs transition-all font-mono">
                             </div>
-                            <div class="md:col-span-3 space-y-2">
+                            <div class="md:col-span-2 space-y-2">
                                 <label
                                     class="text-[8px] font-black text-white/20 uppercase tracking-wider">Energy/Price</label>
-                                <input type="number" formControlName="unitPrice"
-                                    class="w-full bg-black/20 border border-white/5 focus:border-fuchsia-500/30 px-4 py-3 rounded-xl outline-none text-white text-xs transition-all font-mono">
+                                <div
+                                    class="px-4 py-3 rounded-xl bg-white/[0.02] border border-white/5 text-fuchsia-400 text-xs font-mono">
+                                    {{ getProductPrice(item.get('productId')?.value) | currency }}
+                                </div>
                             </div>
                             <div class="md:col-span-1 text-right">
                                 <button type="button" (click)="removeItem(i)"
