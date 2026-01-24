@@ -2,12 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 
-export type LoginResponse = {
-  accessToken?: string;
-  refreshToken?: string;
-  access_token?: string;
-  refresh_token?: string;
-};
+import { LoginResponse } from '../../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

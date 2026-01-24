@@ -3,11 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/authService/auth.service';
 
-interface MenuItem {
-  title: string;
-  path: string;
-  icon: string;
-}
+import { MenuItem } from '../../models/ui.model';
 
 @Component({
   selector: 'app-sidebar',

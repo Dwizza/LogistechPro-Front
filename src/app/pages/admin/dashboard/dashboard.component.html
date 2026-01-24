@@ -14,16 +14,17 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-black text-white tracking-tight uppercase">Admin Systems</h1>
+                    <h1 class="text-2xl font-black text-slate-900 tracking-tight uppercase">Admin Systems</h1>
                     <p class="text-emerald-500/60 text-[10px] font-black uppercase tracking-widest mt-1">Infrastructure
-                        <span class="text-white/40">/ Real-time Status</span></p>
+                        <span class="text-slate-400">/ Real-time Status</span>
+                    </p>
                 </div>
             </div>
 
             <div class="flex items-center gap-4">
-                <div class="bg-white/[0.03] border border-white/5 px-4 py-2 rounded-xl flex items-center gap-3">
+                <div class="bg-black/[0.03] border border-black/5 px-4 py-2 rounded-xl flex items-center gap-3">
                     <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_8px_#10b981]"></div>
-                    <span class="text-[9px] font-black text-white/50 uppercase tracking-widest">Mainframe
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Mainframe
                         Operational</span>
                 </div>
             </div>
@@ -36,20 +37,20 @@
                 <div class="relative z-10 space-y-4">
                     <div class="flex items-center justify-between">
                         <div
-                            class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:bg-emerald-500/10 transition-colors">
+                            class="w-10 h-10 rounded-xl bg-black/[0.03] border border-black/10 flex items-center justify-center group-hover:bg-emerald-500/10 transition-colors">
                             <svg class="w-5 h-5 accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     [attr.d]="stat.icon"></path>
                             </svg>
                         </div>
-                        <div [class]="stat.trend === 'up' ? 'bg-emerald-500/5 text-emerald-400 border-emerald-500/20' : 'bg-rose-500/5 text-rose-400 border-rose-500/20'"
+                        <div [class]="stat.trend === 'up' ? 'bg-emerald-500/5 text-emerald-600 border-emerald-500/20' : 'bg-rose-500/5 text-rose-600 border-rose-500/20'"
                             class="px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest border">
                             {{ stat.change }}
                         </div>
                     </div>
                     <div>
                         <p class="label-cyber mb-1 opacity-50">{{ stat.title }}</p>
-                        <p class="text-3xl font-black text-white tracking-tighter tabular-nums">{{ stat.value }}</p>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter tabular-nums">{{ stat.value }}</p>
                     </div>
                 </div>
             </div>
@@ -59,10 +60,10 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-slideUp" style="animation-delay: 0.1s">
 
             <div class="lg:col-span-2 cyber-card rounded-[2.5rem] overflow-hidden flex flex-col shadow-2xl">
-                <div class="px-8 py-6 border-b border-white/5 flex items-center justify-between bg-white/[0.01]">
-                    <h2 class="text-sm font-black text-white uppercase tracking-wider">Live Logistics Chain</h2>
+                <div class="px-8 py-6 border-b border-black/5 flex items-center justify-between bg-black/[0.01]">
+                    <h2 class="text-sm font-black text-slate-900 uppercase tracking-wider">Live Logistics Chain</h2>
                     <button
-                        class="px-4 py-2 text-[10px] font-black text-emerald-400 border border-emerald-500/20 rounded-lg hover:bg-emerald-500/10 transition-all uppercase tracking-widest">
+                        class="px-4 py-2 text-[10px] font-black text-emerald-600 border border-emerald-500/20 rounded-lg hover:bg-emerald-500/10 transition-all uppercase tracking-widest">
                         Expand Matrix
                     </button>
                 </div>
@@ -70,7 +71,7 @@
                 <div class="overflow-x-auto custom-scrollbar">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-white/[0.02]">
+                            <tr class="bg-black/[0.02]">
                                 <th class="px-8 py-4 label-cyber">Order ID</th>
                                 <th class="px-8 py-4 label-cyber">Customer Designation</th>
                                 <th class="px-8 py-4 label-cyber">Protocol Date</th>
@@ -78,33 +79,33 @@
                                 <th class="px-8 py-4 label-cyber text-right">Valuation</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-white/[0.03]">
+                        <tbody class="divide-y divide-black/[0.03]">
                             <tr *ngFor="let order of recentOrders"
-                                class="group hover:bg-white/[0.01] transition-colors cursor-pointer">
+                                class="group hover:bg-black/[0.01] transition-colors cursor-pointer">
                                 <td
-                                    class="px-8 py-4 text-xs font-mono font-black text-emerald-500/60 tracking-widest uppercase">
+                                    class="px-8 py-4 text-xs font-mono font-black text-emerald-600 tracking-widest uppercase">
                                     {{ order.id }}</td>
                                 <td class="px-8 py-4">
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="w-8 h-8 bg-white/[0.03] border border-white/5 rounded-lg flex items-center justify-center text-white/20 font-black text-[10px]">
+                                            class="w-8 h-8 bg-black/[0.03] border border-black/5 rounded-lg flex items-center justify-center text-slate-400 font-black text-[10px]">
                                             {{ order.customer.charAt(0) }}
                                         </div>
-                                        <span class="text-[11px] font-black text-white/80 uppercase tracking-wide">{{
+                                        <span class="text-[11px] font-black text-slate-800 uppercase tracking-wide">{{
                                             order.customer }}</span>
                                     </div>
                                 </td>
-                                <td class="px-8 py-4 text-[10px] font-bold text-white/30 uppercase">{{ order.date }}
+                                <td class="px-8 py-4 text-[10px] font-bold text-slate-400 uppercase">{{ order.date }}
                                 </td>
                                 <td class="px-8 py-4">
                                     <span
-                                        [class]="order.status === 'Delivered' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : order.status === 'Pending' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 'bg-violet-500/10 text-violet-400 border-violet-500/20'"
+                                        [class]="order.status === 'Delivered' ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20' : order.status === 'Pending' ? 'bg-amber-500/10 text-amber-600 border-amber-500/20' : 'bg-violet-500/10 text-violet-600 border-violet-500/20'"
                                         class="px-3 py-1 text-[9px] font-black rounded-lg uppercase tracking-widest border">
                                         {{ order.status }}
                                     </span>
                                 </td>
                                 <td
-                                    class="px-8 py-4 text-right text-xs font-black text-white tracking-widest tabular-nums">
+                                    class="px-8 py-4 text-right text-xs font-black text-slate-900 tracking-widest tabular-nums">
                                     {{ order.amount }}</td>
                             </tr>
                         </tbody>
@@ -115,19 +116,19 @@
             <div class="space-y-6">
                 <!-- System Controls -->
                 <div class="cyber-card rounded-[2.5rem] p-8 border-violet-500/10 radiant-border radiant-violet">
-                    <h2 class="text-xs font-black text-white uppercase tracking-[0.3em] mb-8">Node Topography</h2>
+                    <h2 class="text-xs font-black text-slate-900 uppercase tracking-[0.3em] mb-8">Node Topography</h2>
                     <div class="space-y-4">
                         <button *ngFor="let action of quickActions"
-                            class="w-full flex items-center gap-4 p-4 rounded-2xl bg-white/[0.01] border border-white/5 hover:border-emerald-500/20 hover:bg-emerald-500/5 transition-all group">
+                            class="w-full flex items-center gap-4 p-4 rounded-2xl bg-black/[0.01] border border-black/5 hover:border-emerald-500/20 hover:bg-emerald-500/5 transition-all group">
                             <div
-                                class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center text-white/20 group-hover:text-emerald-400 transition-colors">
+                                class="w-9 h-9 rounded-xl bg-black/5 flex items-center justify-center text-slate-400 group-hover:text-emerald-600 transition-colors">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         [attr.d]="action.icon"></path>
                                 </svg>
                             </div>
                             <span
-                                class="text-[10px] font-black text-white/50 uppercase tracking-widest group-hover:text-white transition-colors">
+                                class="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-slate-900 transition-colors">
                                 {{ action.title }}
                             </span>
                         </button>
@@ -135,27 +136,27 @@
                 </div>
 
                 <!-- Health Stats -->
-                <div class="cyber-card rounded-[2.5rem] p-8 border-white/5">
+                <div class="cyber-card rounded-[2.5rem] p-8 border-black/5">
                     <p class="label-cyber mb-8">Infrastructure Health</p>
                     <div class="space-y-6">
                         <div class="space-y-2">
                             <div class="flex items-center justify-between">
-                                <span class="text-[9px] font-black text-white/20 uppercase tracking-widest">Quantum
+                                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Quantum
                                     Engine</span>
-                                <span class="text-[9px] font-black text-emerald-500 uppercase">99% Link</span>
+                                <span class="text-[9px] font-black text-emerald-600 uppercase">99% Link</span>
                             </div>
-                            <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                            <div class="h-1 bg-black/5 rounded-full overflow-hidden">
                                 <div class="h-full bg-emerald-500 w-[99%] shadow-[0_0_8px_#10b981]"></div>
                             </div>
                         </div>
 
                         <div class="space-y-2">
                             <div class="flex items-center justify-between">
-                                <span class="text-[9px] font-black text-white/20 uppercase tracking-widest">Database
+                                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Database
                                     Latency</span>
-                                <span class="text-[9px] font-black text-violet-500 uppercase">2ms Peak</span>
+                                <span class="text-[9px] font-black text-violet-600 uppercase">2ms Peak</span>
                             </div>
-                            <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                            <div class="h-1 bg-black/5 rounded-full overflow-hidden">
                                 <div class="h-full bg-violet-500 w-[85%] shadow-[0_0_8px_#8b5cf6]"></div>
                             </div>
                         </div>

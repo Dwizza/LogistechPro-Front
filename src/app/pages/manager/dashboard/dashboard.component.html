@@ -1,11 +1,11 @@
 <div class="p-6 lg:p-8 min-h-screen">
   <div class="max-w-7xl mx-auto space-y-8">
 
-    
+    <!-- Unified Manager Header -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 animate-fadeIn">
       <div class="flex items-center gap-5">
-        <div class="w-14 h-14 cyber-card rounded-2xl flex items-center justify-center border-white/10 relative group">
-          <div class="absolute inset-0 bg-violet-500/10 group-hover:bg-violet-500/20 transition-colors"></div>
+        <div class="w-14 h-14 cyber-card rounded-2xl flex items-center justify-center border-black/5 relative group">
+          <div class="absolute inset-0 bg-violet-500/5 group-hover:bg-violet-500/10 transition-colors"></div>
           <svg class="w-7 h-7 accent-violet relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
@@ -13,70 +13,72 @@
           </svg>
         </div>
         <div>
-          <h1 class="text-2xl font-black text-white tracking-tight uppercase">Warehouse Overview</h1>
-          <p class="text-violet-400 text-[10px] font-black uppercase tracking-widest mt-1">Inventory & <span
-              class="text-white/40">Logistics Control</span></p>
+          <h1 class="text-2xl font-black text-slate-900 tracking-tight uppercase">Warehouse Overview</h1>
+          <p class="text-violet-500 text-[10px] font-black uppercase tracking-widest mt-1">Inventory & <span
+              class="text-slate-400">Logistics Control</span></p>
         </div>
       </div>
 
       <div class="flex items-center gap-4">
-        <div class="bg-white/[0.03] border border-white/5 px-4 py-2 rounded-xl flex items-center gap-3">
+        <div class="bg-black/[0.03] border border-black/5 px-4 py-2 rounded-xl flex items-center gap-3">
           <div class="w-1.5 h-1.5 bg-violet-500 rounded-full shadow-[0_0_8px_#8b5cf6]"></div>
-          <span class="text-[9px] font-black text-white/60 uppercase tracking-widest">Active Shift</span>
+          <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Active Shift</span>
         </div>
       </div>
     </div>
 
-    
+    <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-slideUp">
       <div *ngFor="let stat of stats"
-        class="cyber-card rounded-3xl p-6 border-white/5 group transition-all duration-300 radiant-border radiant-violet">
+        class="cyber-card rounded-3xl p-6 border-black/5 group transition-all duration-300 radiant-border radiant-violet shadow-lg">
 
         <div class="relative z-10 space-y-4">
           <div class="flex items-center justify-between">
-            <div class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center">
+            <div class="w-10 h-10 rounded-xl bg-black/[0.03] border border-black/10 flex items-center justify-center">
               <svg class="w-5 h-5 accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="stat.icon"></path>
               </svg>
             </div>
             <div
-              [class]="'px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest border ' + (stat.trend === 'up' ? 'bg-emerald-500/5 text-emerald-400 border-emerald-500/20' : 'bg-red-500/5 text-red-400 border-red-500/20')">
+              [class]="'px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest border ' + (stat.trend === 'up' ? 'bg-emerald-500/5 text-emerald-600 border-emerald-500/20' : 'bg-red-500/5 text-red-600 border-red-500/20')">
               {{ stat.change }}
             </div>
           </div>
           <div>
             <p class="label-cyber mb-1">{{ stat.title }}</p>
-            <p class="text-2xl font-black text-white tracking-tight tabular-nums">{{ stat.value }}</p>
+            <p class="text-2xl font-black text-slate-900 tracking-tight tabular-nums">{{ stat.value }}</p>
           </div>
         </div>
       </div>
     </div>
 
-    
+    <!-- Main Content Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-slideUp" style="animation-delay: 0.1s">
-      
-      <div class="lg:col-span-2 cyber-card rounded-[2rem] border-white/5 overflow-hidden flex flex-col">
-        <div class="px-8 py-6 border-b border-white/5 flex items-center justify-between">
-          <h2 class="text-lg font-black text-white uppercase tracking-tight">Active Shipments</h2>
+
+      <!-- Primary List -->
+      <div class="lg:col-span-2 cyber-card rounded-[2rem] border-black/5 overflow-hidden flex flex-col shadow-xl">
+        <div class="px-8 py-6 border-b border-black/5 flex items-center justify-between bg-black/[0.01]">
+          <h2 class="text-lg font-black text-slate-900 uppercase tracking-tight">Active Shipments</h2>
         </div>
 
         <div class="overflow-x-auto">
           <table class="w-full">
             <thead>
-              <tr class="bg-white/[0.01]">
+              <tr class="bg-black/[0.02]">
                 <th class="px-8 py-4 text-left label-cyber">ID</th>
                 <th class="px-8 py-4 text-left label-cyber">Destination</th>
                 <th class="px-8 py-4 text-left label-cyber">Driver</th>
                 <th class="px-8 py-4 text-left label-cyber">Status</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-white/[0.03]">
+            <tbody class="divide-y divide-black/[0.03]">
               <tr *ngFor="let shp of recentShipments"
-                class="group hover:bg-white/[0.01] transition-colors cursor-pointer">
-                <td class="px-8 py-4 text-xs font-black text-white tracking-[0.1em] uppercase">{{ shp.id }}</td>
-                <td class="px-8 py-4 text-[11px] font-black text-white/70 uppercase tracking-wide">{{ shp.destination }}
+                class="group hover:bg-black/[0.01] transition-colors cursor-pointer">
+                <td class="px-8 py-4 text-xs font-black text-slate-900 tracking-[0.1em] uppercase">{{ shp.id }}</td>
+                <td class="px-8 py-4 text-[11px] font-black text-slate-600 uppercase tracking-wide">{{ shp.destination
+                  }}
                 </td>
-                <td class="px-8 py-4 text-[10px] font-bold text-white/30 uppercase">{{ shp.driver }}</td>
+                <td class="px-8 py-4 text-[10px] font-bold text-slate-400 uppercase">{{ shp.driver }}</td>
                 <td class="px-8 py-4">
                   <span
                     [class]="'px-3 py-1 text-[9px] font-black rounded-lg uppercase tracking-widest border ' + getStatusColor(shp.status)">
@@ -89,51 +91,51 @@
         </div>
       </div>
 
-      
+      <!-- Secondary Section -->
       <div class="space-y-6">
-        <div class="cyber-card rounded-[2rem] p-8 border-white/5 radiant-border radiant-emerald">
+        <div class="cyber-card rounded-[2rem] p-8 border-black/5 radiant-border radiant-emerald shadow-lg">
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
-              <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-9 h-9 bg-black/5 rounded-xl flex items-center justify-center border border-black/10">
+              <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
                 </path>
               </svg>
             </div>
-            <h2 class="text-lg font-black text-white uppercase tracking-tight">Stock Alerts</h2>
+            <h2 class="text-lg font-black text-slate-900 uppercase tracking-tight">Stock Alerts</h2>
           </div>
 
           <div class="space-y-3">
             <div *ngFor="let alert of inventoryAlerts"
-              class="p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all">
+              class="p-4 rounded-2xl bg-black/[0.02] border border-black/5 hover:border-black/10 transition-all">
               <div class="flex items-center justify-between mb-2">
-                <p class="text-[10px] font-black text-white uppercase tracking-widest">{{ alert.item }}</p>
+                <p class="text-[10px] font-black text-slate-900 uppercase tracking-widest">{{ alert.item }}</p>
                 <span
-                  [class]="'px-2 py-0.5 text-[8px] font-black rounded-md uppercase tracking-widest border ' + (alert.status === 'Critical' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 'bg-orange-500/10 text-orange-400 border-orange-500/20')">
+                  [class]="'px-2 py-0.5 text-[8px] font-black rounded-md uppercase tracking-widest border ' + (alert.status === 'Critical' ? 'bg-red-500/10 text-red-600 border-red-500/20' : 'bg-orange-500/10 text-orange-600 border-orange-500/20')">
                   {{ alert.status }}
                 </span>
               </div>
-              <p class="text-[9px] text-white/30 font-black uppercase tracking-widest">Level: <span
-                  class="text-white">{{ alert.stock }}</span></p>
+              <p class="text-[9px] text-slate-400 font-black uppercase tracking-widest">Level: <span
+                  class="text-slate-900">{{ alert.stock }}</span></p>
             </div>
           </div>
         </div>
 
-        
-        <div class="cyber-card rounded-[2rem] p-8 border-white/5">
+        <!-- Metric Card -->
+        <div class="cyber-card rounded-[2rem] p-8 border-black/5 shadow-lg">
           <p class="label-cyber mb-6">Operations Health</p>
           <div class="text-center py-4">
             <div class="inline-flex relative">
               <svg class="w-20 h-20 -rotate-90">
-                <circle cx="40" cy="40" r="36" class="stroke-white/5 fill-none" stroke-width="4" />
-                <circle cx="40" cy="40" r="36" class="stroke-emerald-500 fill-none" stroke-width="4"
+                <circle cx="40" cy="40" r="36" class="stroke-black/5 fill-none" stroke-width="4" />
+                <circle cx="40" cy="40" r="36" class="stroke-emerald-600 fill-none" stroke-width="4"
                   stroke-dasharray="226" stroke-dashoffset="40" stroke-linecap="round" />
               </svg>
               <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xs font-black text-white italic">84%</span>
+                <span class="text-xs font-black text-slate-900 italic">84%</span>
               </div>
             </div>
-            <p class="text-[9px] font-black text-white/40 uppercase tracking-[0.2em] mt-4">Capacity Utilization</p>
+            <p class="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mt-4">Capacity Utilization</p>
           </div>
         </div>
       </div>

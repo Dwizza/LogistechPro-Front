@@ -2,12 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export interface Warehouse {
-  id?: number;
-  code: string;
-  name: string;
-  active: boolean;
-}
+import { Warehouse } from '../../models/warehouse.model';
 
 @Injectable({
   providedIn: 'root'

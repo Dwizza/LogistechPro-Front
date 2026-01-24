@@ -36,6 +36,7 @@ export const routes: Routes = [
             { path: 'admin/purchase-orders', component: AdminManagePO, canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/products', loadComponent: () => import('./pages/admin/manage-products/manage-products.component').then(m => m.ManageProductsComponent), canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'admin/inventory', loadComponent: () => import('./pages/admin/manage-inventory/manage-inventory.component').then(m => m.ManageInventoryComponent), canActivate: [roleGuard(['ROLE_ADMIN'])] },
+            { path: 'admin/suppliers', loadComponent: () => import('./pages/admin/manage-suppliers/manage-suppliers.component').then(m => m.ManageSuppliersComponent), canActivate: [roleGuard(['ROLE_ADMIN'])] },
             { path: 'manager/dashboard', component: ManagerDashboardComponent, canActivate: [roleGuard(['ROLE_WAREHOUSE_MANAGER'])] },
             { path: 'manager/purchase-orders', component: ManagerManagePO, canActivate: [roleGuard(['ROLE_WAREHOUSE_MANAGER'])] },
         ]

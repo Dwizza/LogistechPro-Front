@@ -14,9 +14,10 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-black text-slate-900 tracking-tight uppercase">Registry Desk</h1>
-                    <p class="text-emerald-500/60 text-[10px] font-black uppercase tracking-widest mt-1">Personnel <span
-                            class="text-slate-400">/ Archive Hub</span></p>
+                    <h1 class="text-2xl font-black text-slate-900 tracking-tight uppercase">Supplier Hub</h1>
+                    <p class="text-emerald-500/60 text-[10px] font-black uppercase tracking-widest mt-1">Supply Chain
+                        <span class="text-slate-400">/ Provider Registry</span>
+                    </p>
                 </div>
             </div>
 
@@ -24,7 +25,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
-                Deploy New Manager
+                Deploy New Supplier
             </button>
         </div>
 
@@ -52,48 +53,41 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-black/[0.02] border-b border-black/5">
-                            <th class="px-10 py-6 label-cyber">Identity</th>
-                            <th class="px-10 py-6 label-cyber">Secure Email</th>
-                            <th class="px-10 py-6 label-cyber">Access Clearance</th>
-                            <th class="px-10 py-6 label-cyber text-right">Network Operations</th>
+                            <th class="px-10 py-6 label-cyber">Provider Name</th>
+                            <th class="px-10 py-6 label-cyber">Contact Information</th>
+                            <th class="px-10 py-6 label-cyber text-right">Registry Operations</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-black/[0.03]">
                         <tr *ngIf="fetching" class="animate-pulse">
-                            <td colspan="4"
+                            <td colspan="3"
                                 class="px-10 py-10 text-center text-[10px] text-slate-400 uppercase tracking-[0.5em]">
                                 Synchronizing Registry...</td>
                         </tr>
-                        <tr *ngIf="!fetching && managers.length === 0">
-                            <td colspan="4"
+                        <tr *ngIf="!fetching && suppliers.length === 0">
+                            <td colspan="3"
                                 class="px-10 py-10 text-center text-[10px] text-slate-400 uppercase tracking-[0.5em]">No
-                                active nodes found</td>
+                                active providers found</td>
                         </tr>
-                        <tr *ngFor="let manager of managers" class="group hover:bg-emerald-500/[0.02] transition-all">
+                        <tr *ngFor="let supplier of suppliers" class="group hover:bg-emerald-500/[0.02] transition-all">
                             <td class="px-10 py-6">
                                 <div class="flex items-center gap-4">
                                     <div
                                         class="w-10 h-10 bg-black/[0.03] border border-black/10 rounded-xl flex items-center justify-center text-emerald-600 font-black text-xs uppercase">
-                                        {{ manager.name.charAt(0) }}
+                                        {{ supplier.name.charAt(0) }}
                                     </div>
                                     <span class="text-sm font-black text-slate-800 tracking-wide uppercase">{{
-                                        manager.name }}</span>
+                                        supplier.name }}</span>
                                 </div>
                             </td>
                             <td class="px-10 py-6">
-                                <span class="text-xs font-bold text-slate-500 tracking-widest">{{ manager.email
+                                <span class="text-xs font-bold text-slate-500 tracking-widest">{{ supplier.contactInfo
                                     }}</span>
-                            </td>
-                            <td class="px-10 py-6">
-                                <span
-                                    class="px-3 py-1 text-[9px] font-black rounded-lg uppercase tracking-widest border bg-emerald-500/5 text-emerald-600 border-emerald-500/20">
-                                    Manager_Auth
-                                </span>
                             </td>
                             <td class="px-10 py-6 text-right">
                                 <div
                                     class="flex items-center justify-end gap-3 md:opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button (click)="openEditModal(manager); $event.stopPropagation()"
+                                    <button (click)="openEditModal(supplier); $event.stopPropagation()"
                                         class="p-2.5 bg-black/5 hover:bg-black/10 border border-black/10 rounded-xl text-slate-400 hover:text-slate-900 transition-all">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -101,7 +95,7 @@
                                             </path>
                                         </svg>
                                     </button>
-                                    <button (click)="onDelete(manager.id); $event.stopPropagation()"
+                                    <button (click)="onDelete(supplier.id); $event.stopPropagation()"
                                         class="p-2.5 bg-rose-500/5 hover:bg-rose-500/10 border border-rose-500/10 rounded-xl text-rose-400 hover:text-rose-600 transition-all">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,10 +121,10 @@
             <div class="flex items-center justify-between mb-10">
                 <div>
                     <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight">{{ isEditMode ? 'Modify
-                        Access'
-                        : 'Register Operator' }}</h2>
-                    <p class="text-[9px] text-emerald-500/50 font-black uppercase tracking-[0.3em] mt-1">Personnel
-                        Authorization Node</p>
+                        Provider'
+                        : 'Register Provider' }}</h2>
+                    <p class="text-[9px] text-emerald-500/50 font-black uppercase tracking-[0.3em] mt-1">Supply Node
+                        Initialization</p>
                 </div>
                 <button (click)="closeModal()"
                     class="w-10 h-10 rounded-xl bg-black/5 border border-black/10 flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors">
@@ -141,31 +135,22 @@
                 </button>
             </div>
 
-            <form [formGroup]="managerForm" (ngSubmit)="onSubmit()" class="space-y-8">
+            <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()" class="space-y-8">
                 <div class="space-y-3">
-                    <label class="label-cyber ml-1">Identity Name</label>
+                    <label class="label-cyber ml-1">Company Name</label>
                     <input type="text" formControlName="name"
                         class="w-full bg-black/[0.03] border border-black/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-slate-900 text-sm transition-all"
-                        placeholder="John Connor">
+                        placeholder="Nexus Supplies Ltd.">
                 </div>
 
                 <div class="space-y-3">
-                    <label class="label-cyber ml-1">Secure Email</label>
-                    <input type="email" formControlName="email"
+                    <label class="label-cyber ml-1">Contact Intel (Email/Phone)</label>
+                    <input type="text" formControlName="contactInfo"
                         class="w-full bg-black/[0.03] border border-black/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-slate-900 text-sm transition-all"
-                        placeholder="operator@nexus.pro">
+                        placeholder="contact@nexus.pro">
                 </div>
 
-                <div class="space-y-3">
-                    <label class="label-cyber ml-1">Access Key (Password) <span *ngIf="isEditMode"
-                            class="text-slate-400 italic font-normal text-[8px] tracking-normal ml-2">(Empty to keep
-                            unchanged)</span></label>
-                    <input type="password" formControlName="password"
-                        class="w-full bg-black/[0.03] border border-black/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-slate-900 text-sm transition-all"
-                        placeholder="••••••••">
-                </div>
-
-                <button type="submit" [disabled]="loading || managerForm.invalid"
+                <button type="submit" [disabled]="loading || supplierForm.invalid"
                     class="w-full py-5 rounded-2xl btn-cyber-emerald disabled:opacity-20 flex items-center justify-center gap-4 group">
                     <svg *ngIf="loading" class="animate-spin h-5 w-5" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
@@ -174,8 +159,8 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    <span class="tracking-[0.4em]">{{ loading ? 'Syncing...' : (isEditMode ? 'Apply Clearances' :
-                        'Initialize Node') }}</span>
+                    <span class="tracking-[0.4em]">{{ loading ? 'Syncing...' : (isEditMode ? 'Update Provider' :
+                        'Deploy Node') }}</span>
                 </button>
             </form>
         </div>

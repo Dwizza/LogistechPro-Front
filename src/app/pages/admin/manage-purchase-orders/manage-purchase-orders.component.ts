@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { PurchaseOrderService } from '../../../services/purchase-order/purchase-order.service';
 import { PurchaseOrder, PurchaseOrderItem } from '../../../models/purchase-order.model';
-import { ProductService, Product } from '../../../services/product/product.service';
-import { WarehouseService, Warehouse } from '../../../services/warehouse/warehouse.service';
+import { ProductService } from '../../../services/product/product.service';
+import { Product } from '../../../models/product.model';
+import { WarehouseService } from '../../../services/warehouse/warehouse.service';
+import { Warehouse } from '../../../models/warehouse.model';
 import { SupplierService } from '../../../services/supplier/supplier.service';
 import { Supplier } from '../../../models/supplier.model';
 

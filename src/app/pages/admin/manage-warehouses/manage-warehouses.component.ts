@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { WarehouseService, Warehouse } from '../../../services/warehouse/warehouse.service';
+import { WarehouseService } from '../../../services/warehouse/warehouse.service';
+import { Warehouse } from '../../../models/warehouse.model';
 
 @Component({
     selector: 'app-manage-warehouses',

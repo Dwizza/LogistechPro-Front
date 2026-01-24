@@ -5,8 +5,8 @@ import { InventoryService } from '../../../services/inventory/inventory.service'
 import { ProductService } from '../../../services/product/product.service';
 import { WarehouseService } from '../../../services/warehouse/warehouse.service';
 import { Inventory } from '../../../models/inventory.model';
-import { Product } from '../../../services/product/product.service';
-import { Warehouse } from '../../../services/warehouse/warehouse.service';
+import { Product } from '../../../models/product.model';
+import { Warehouse } from '../../../models/warehouse.model';
 
 @Component({
     selector: 'app-manage-inventory',

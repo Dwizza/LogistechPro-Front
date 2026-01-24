@@ -18,4 +18,16 @@ export class SupplierService {
     getSupplier(id: number): Observable<Supplier> {
         return this.http.get<Supplier>(`${this.API_URL}/${id}`);
     }
+
+    createSupplier(supplier: Partial<Supplier>): Observable<Supplier> {
+        return this.http.post<Supplier>(this.API_URL, supplier);
+    }
+
+    updateSupplier(id: number, supplier: Partial<Supplier>): Observable<Supplier> {
+        return this.http.put<Supplier>(`${this.API_URL}/${id}`, supplier);
+    }
+
+    deleteSupplier(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.API_URL}/${id}`);
+    }
 }

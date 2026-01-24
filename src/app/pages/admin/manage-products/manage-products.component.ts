@@ -1,21 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProductService, Product, ProductWarehouse } from '../../../services/product/product.service';
-import { WarehouseService, Warehouse } from '../../../services/warehouse/warehouse.service';
-
-interface ProductTableItem {
-  id?: number;
-  sku: string;
-  name: string;
-  category: string;
-  warehouseName: string;
-  warehouseCode: string;
-  warehouseId?: number;
-  stock: number;
-  price: number;
-  imageUrl?: string;
-}
+import { ProductService } from '../../../services/product/product.service';
+import { Product, ProductWarehouse, ProductTableItem } from '../../../models/product.model';
+import { WarehouseService } from '../../../services/warehouse/warehouse.service';
+import { Warehouse } from '../../../models/warehouse.model';
 
 @Component({
   selector: 'app-manage-products',

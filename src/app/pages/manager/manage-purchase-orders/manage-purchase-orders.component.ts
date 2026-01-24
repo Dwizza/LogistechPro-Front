@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators, FormArray } from '@angular/forms';
 import { PurchaseOrderService } from '../../../services/purchase-order/purchase-order.service';
 import { PurchaseOrder, PurchaseOrderItem } from '../../../models/purchase-order.model';
-import { ProductService, Product } from '../../../services/product/product.service';
-import { WarehouseService, Warehouse } from '../../../services/warehouse/warehouse.service';
+import { ProductService } from '../../../services/product/product.service';
+import { WarehouseService} from '../../../services/warehouse/warehouse.service';
 import { SupplierService } from '../../../services/supplier/supplier.service';
 import { Supplier } from '../../../models/supplier.model';
+import { Product } from '../../../models/product.model';
+import { Warehouse } from '../../../models/warehouse.model';
 
 @Component({
     selector: 'app-manager-manage-purchase-orders',

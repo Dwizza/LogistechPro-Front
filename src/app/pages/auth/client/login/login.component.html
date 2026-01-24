@@ -1,11 +1,11 @@
 <div class="bg-cyber-luxe flex items-center justify-center p-6 lg:p-12 relative overflow-hidden">
-  
+
   <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[120px] pointer-events-none">
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-500/5 rounded-full blur-[120px] pointer-events-none">
   </div>
 
   <div class="relative w-full max-w-[440px] animate-fadeIn">
-    
+
     <div class="text-center mb-12">
       <div class="inline-flex p-4 cyber-card rounded-2xl mb-8 shadow-2xl radiant-border radiant-violet">
         <svg class="w-10 h-10 accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -13,23 +13,23 @@
             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
         </svg>
       </div>
-      <h1 class="text-xs font-black text-violet-400 uppercase tracking-[0.5em] mb-4">Client Login</h1>
-      <h2 class="text-4xl font-black text-white tracking-tighter uppercase leading-none">Logis<span
-          class="text-white/40">TECH</span></h2>
+      <h1 class="text-xs font-black text-violet-600 uppercase tracking-[0.5em] mb-4">Client Login</h1>
+      <h2 class="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">Logis<span
+          class="text-slate-400">TECH</span></h2>
       <div class="mt-4">
         <a routerLink="/management/login"
-          class="text-[10px] font-black text-violet-400 opacity-60 hover:opacity-100 uppercase tracking-[0.2em] transition-all border border-violet-500/20 px-4 py-2 rounded-full hover:bg-violet-500/5">
+          class="text-[10px] font-black text-violet-600 opacity-60 hover:opacity-100 uppercase tracking-[0.2em] transition-all border border-violet-500/20 px-4 py-2 rounded-full hover:bg-violet-500/5">
           Login as Manager
         </a>
       </div>
     </div>
 
-    
-    <div class="cyber-card rounded-[3.5rem] p-10 lg:p-12 border-white/10 radiant-border radiant-violet shadow-3xl">
+
+    <div class="cyber-card rounded-[3.5rem] p-10 lg:p-12 border-black/5 radiant-border radiant-violet shadow-3xl">
       <div *ngIf="errorMsg"
-        class="mb-8 p-5 bg-red-500/10 border border-red-500/20 rounded-[1.5rem] flex items-center gap-4 animate-shake shadow-xl shadow-red-500/5">
-        <div class="w-2 h-2 bg-red-500 rounded-full shadow-[0_0_12px_#ef4444]"></div>
-        <span class="text-[10px] font-black text-red-100 uppercase tracking-widest">{{ errorMsg }}</span>
+        class="mb-8 p-5 bg-rose-500/10 border border-rose-500/20 rounded-[1.5rem] flex items-center gap-4 animate-shake shadow-xl shadow-rose-500/5">
+        <div class="w-2 h-2 bg-rose-500 rounded-full shadow-[0_0_12px_#f43f5e]"></div>
+        <span class="text-[10px] font-black text-rose-600 uppercase tracking-widest">{{ errorMsg }}</span>
       </div>
 
       <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-10">
@@ -37,7 +37,7 @@
           <label class="label-cyber ml-2">Email</label>
           <div class="group relative">
             <input type="email" formControlName="email"
-              class="w-full bg-white/[0.03] border border-white/10 focus:border-violet-500/40 focus:bg-white/[0.06] px-8 py-5 rounded-[1.5rem] outline-none text-white text-base transition-all duration-500 placeholder:text-white/5"
+              class="w-full bg-black/[0.03] border border-black/10 focus:border-violet-500/40 focus:bg-black/[0.06] px-8 py-5 rounded-[1.5rem] outline-none text-slate-900 text-base transition-all duration-500 placeholder:text-slate-300"
               placeholder="client@logistech.nexus">
           </div>
         </div>
@@ -46,17 +46,17 @@
           <label class="label-cyber ml-2">Password</label>
           <div class="group relative">
             <input type="password" formControlName="password"
-              class="w-full bg-white/[0.03] border border-white/10 focus:border-violet-500/40 focus:bg-white/[0.06] px-8 py-5 rounded-[1.5rem] outline-none text-white text-base transition-all duration-500 placeholder:text-white/5"
+              class="w-full bg-black/[0.03] border border-black/10 focus:border-violet-500/40 focus:bg-black/[0.06] px-8 py-5 rounded-[1.5rem] outline-none text-slate-900 text-base transition-all duration-500 placeholder:text-slate-300"
               placeholder="••••••••••••">
           </div>
         </div>
 
         <div class="pt-4 relative group">
-          <div class="absolute inset-0 bg-violet-500/20 blur-2xl opacity-0 group-hover:opacity-40 transition-opacity">
+          <div class="absolute inset-0 bg-violet-500/10 blur-2xl opacity-0 group-hover:opacity-40 transition-opacity">
           </div>
           <button type="submit" [disabled]="loading || form.invalid"
-            class="w-full py-6 rounded-[1.5rem] bg-violet-600/10 border border-violet-500/20 text-white font-black uppercase tracking-[0.3em] hover:bg-violet-600/20 hover:border-violet-500/50 hover:shadow-[0_0_30px_rgba(139,92,246,0.2)] disabled:opacity-20 disabled:cursor-not-allowed flex items-center justify-center gap-4 relative z-10 transition-all duration-300">
-            <svg *ngIf="loading" class="animate-spin h-6 w-6 text-violet-400" viewBox="0 0 24 24">
+            class="w-full py-6 rounded-[1.5rem] bg-violet-600/10 border border-violet-500/20 text-slate-900 font-black uppercase tracking-[0.3em] hover:bg-violet-600/20 hover:border-violet-500/50 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] disabled:opacity-20 disabled:cursor-not-allowed flex items-center justify-center gap-4 relative z-10 transition-all duration-300">
+            <svg *ngIf="loading" class="animate-spin h-6 w-6 text-violet-600" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor"
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
@@ -68,12 +68,12 @@
       </form>
 
       <div class="mt-12 text-center">
-        <p class="text-[9px] text-white/20 font-black uppercase tracking-[0.3em] mb-6">You dont have an account?</p>
+        <p class="text-[9px] text-slate-400 font-black uppercase tracking-[0.3em] mb-6">You dont have an account?</p>
         <a routerLink="/client/register" class="inline-flex items-center gap-2 group">
           <span
-            class="text-[10px] font-black text-violet-400 group-hover:text-violet-300 uppercase tracking-[0.2em] transition-colors">Create
+            class="text-[10px] font-black text-violet-600 group-hover:text-violet-500 uppercase tracking-[0.2em] transition-colors">Create
             Account</span>
-          <svg class="w-4 h-4 text-violet-400 group-hover:translate-x-1 transition-transform" fill="none"
+          <svg class="w-4 h-4 text-violet-600 group-hover:translate-x-1 transition-transform" fill="none"
             stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>

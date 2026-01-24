@@ -13,9 +13,9 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-black text-white tracking-tight uppercase">Inventory Control</h1>
+                    <h1 class="text-2xl font-black text-slate-900 tracking-tight uppercase">Inventory Control</h1>
                     <p class="text-emerald-500/60 text-[10px] font-black uppercase tracking-widest mt-1">Live Stock
-                        Tracking <span class="text-white/40">/ Distribution Node</span></p>
+                        Tracking <span class="text-slate-400">/ Distribution Node</span></p>
                 </div>
             </div>
 
@@ -30,12 +30,12 @@
         <!-- Alert messages -->
         <div *ngIf="errorMsg" class="animate-fadeIn">
             <div
-                class="px-6 py-4 bg-red-500/5 border border-red-500/10 rounded-2xl flex items-center justify-between text-red-400">
+                class="px-6 py-4 bg-red-500/5 border border-red-500/10 rounded-2xl flex items-center justify-between text-red-600">
                 <div class="flex items-center gap-4">
                     <div class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
                     <span class="text-[9px] font-black uppercase tracking-[0.2em]">{{errorMsg}}</span>
                 </div>
-                <button (click)="errorMsg = ''" class="text-white/20 hover:text-white transition-colors">
+                <button (click)="errorMsg = ''" class="text-slate-400 hover:text-slate-900 transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
                         </path>
@@ -46,12 +46,12 @@
 
         <div *ngIf="successMsg" class="animate-fadeIn">
             <div
-                class="px-6 py-4 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl flex items-center justify-between text-emerald-400">
+                class="px-6 py-4 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl flex items-center justify-between text-emerald-600">
                 <div class="flex items-center gap-4">
                     <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
                     <span class="text-[9px] font-black uppercase tracking-[0.2em]">{{successMsg}}</span>
                 </div>
-                <button (click)="successMsg = ''" class="text-white/20 hover:text-white transition-colors">
+                <button (click)="successMsg = ''" class="text-slate-400 hover:text-slate-900 transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
                         </path>
@@ -65,7 +65,7 @@
             <div class="overflow-x-auto custom-scrollbar">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-white/[0.02] border-b border-white/5">
+                        <tr class="bg-black/[0.02] border-b border-black/5">
                             <th class="px-10 py-6 label-cyber">Asset Source</th>
                             <th class="px-10 py-6 label-cyber">Deployment unit</th>
                             <th class="px-10 py-6 label-cyber text-right">Gross stock</th>
@@ -74,12 +74,12 @@
                             <th class="px-10 py-6 label-cyber text-right">Operations</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/[0.03]">
+                    <tbody class="divide-y divide-black/[0.03]">
                         <tr *ngFor="let item of inventories" class="group hover:bg-emerald-500/[0.02] transition-all">
                             <td class="px-10 py-6">
                                 <div class="flex items-center gap-4">
                                     <div
-                                        class="w-10 h-10 bg-white/[0.03] border border-white/10 rounded-xl flex items-center justify-center text-emerald-400 font-black text-xs uppercase">
+                                        class="w-10 h-10 bg-black/[0.03] border border-black/10 rounded-xl flex items-center justify-center text-emerald-600 font-black text-xs uppercase">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-40" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -87,30 +87,30 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <div class="font-black text-white text-sm tracking-tight uppercase">
+                                        <div class="font-black text-slate-900 text-sm tracking-tight uppercase">
                                             {{item.productName || getProductName(item.productId)}}</div>
-                                        <div class="text-[9px] text-white/20 uppercase tracking-widest mt-1">ID:
+                                        <div class="text-[9px] text-slate-400 uppercase tracking-widest mt-1">ID:
                                             #{{item.productId}}</div>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-10 py-6">
                                 <div class="flex flex-col">
-                                    <span class="text-white/60 font-medium text-xs">{{item.warehouseName ||
+                                    <span class="text-slate-600 font-medium text-xs">{{item.warehouseName ||
                                         getWarehouseName(item.warehouseId)}}</span>
                                     <span
-                                        class="text-[9px] text-white/10 font-mono tracking-widest mt-0.5 uppercase">Zone
+                                        class="text-[9px] text-slate-400 font-mono tracking-widest mt-0.5 uppercase">Zone
                                         #{{item.warehouseId}}</span>
                                 </div>
                             </td>
                             <td class="px-10 py-6 text-right">
-                                <span class="text-white font-black text-sm tabular-nums">{{item.qtyOnHand}}</span>
+                                <span class="text-slate-900 font-black text-sm tabular-nums">{{item.qtyOnHand}}</span>
                             </td>
                             <td class="px-10 py-6 text-right">
-                                <span class="text-white/40 font-mono text-xs">{{item.qtyReserved}}</span>
+                                <span class="text-slate-400 font-mono text-xs">{{item.qtyReserved}}</span>
                             </td>
                             <td class="px-10 py-6 text-right">
-                                <span [class]="getAvailableQty(item) > 10 ? 'accent-emerald' : 'text-rose-400'"
+                                <span [class]="getAvailableQty(item) > 10 ? 'accent-emerald' : 'text-rose-600'"
                                     class="font-black text-sm tabular-nums">
                                     {{getAvailableQty(item)}}
                                 </span>
@@ -119,7 +119,7 @@
                                 <div
                                     class="flex items-center justify-end gap-2 md:opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button (click)="openEditModal(item)"
-                                        class="p-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white/40 hover:text-white transition-all">
+                                        class="p-2.5 bg-black/5 hover:bg-black/10 border border-black/10 rounded-xl text-slate-400 hover:text-slate-900 transition-all">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,7 +127,7 @@
                                         </svg>
                                     </button>
                                     <button (click)="deleteInventory(item.id!)"
-                                        class="p-2.5 bg-rose-500/5 hover:bg-rose-500/10 border border-rose-500/10 rounded-xl text-rose-400/40 hover:text-rose-400 transition-all">
+                                        class="p-2.5 bg-rose-500/5 hover:bg-rose-500/10 border border-rose-500/10 rounded-xl text-rose-400/40 hover:text-rose-600 transition-all">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -143,7 +143,7 @@
 
             <!-- Loading Overlay -->
             <div *ngIf="loading"
-                class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-30">
+                class="absolute inset-0 bg-white/40 backdrop-blur-[2px] flex items-center justify-center z-30">
                 <div
                     class="h-10 w-10 border-[3px] border-emerald-500/10 border-t-emerald-500 rounded-full animate-spin">
                 </div>
@@ -153,18 +153,18 @@
 
     <!-- Modal system -->
     <div *ngIf="showModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 animate-fadeIn">
-        <div (click)="closeModal()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div (click)="closeModal()" class="modal-backdrop"></div>
         <div
-            class="relative w-full max-w-lg cyber-card rounded-[3rem] p-10 radiant-border radiant-emerald animate-slideUp shadow-3xl">
+            class="relative w-full max-w-lg cyber-card-emerald rounded-[3rem] p-10 radiant-border radiant-emerald animate-slideUp shadow-3xl">
             <div class="flex items-center justify-between mb-10">
                 <div>
-                    <h2 class="text-2xl font-black text-white uppercase tracking-tight">{{editingInventory ? 'Update
+                    <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight">{{editingInventory ? 'Update
                         Stock' : 'Stock Assignment'}}</h2>
                     <p class="text-[9px] text-emerald-500/50 font-black uppercase tracking-[0.3em] mt-1">Inventory
                         Allocation Node</p>
                 </div>
                 <button (click)="closeModal()"
-                    class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-colors">
+                    class="w-10 h-10 rounded-xl bg-black/5 border border-black/10 flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
                         </path>
@@ -176,7 +176,7 @@
                 <div class="space-y-3">
                     <label class="label-cyber ml-1">Asset Selector</label>
                     <select formControlName="productId"
-                        class="w-full bg-white/[0.03] border border-white/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm transition-all cursor-pointer">
+                        class="w-full bg-black/[0.03] border border-black/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-slate-900 text-sm transition-all cursor-pointer">
                         <option [ngValue]="null">Select Product Information...</option>
                         <option *ngFor="let p of products" [value]="p.id">{{p.name}} ({{p.sku}})</option>
                     </select>
@@ -185,7 +185,7 @@
                 <div class="space-y-3">
                     <label class="label-cyber ml-1">Location unit</label>
                     <select formControlName="warehouseId"
-                        class="w-full bg-white/[0.03] border border-white/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm transition-all cursor-pointer">
+                        class="w-full bg-black/[0.03] border border-black/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-slate-900 text-sm transition-all cursor-pointer">
                         <option [ngValue]="null">Choose Warehouse Target...</option>
                         <option *ngFor="let w of warehouses" [value]="w.id">{{w.name}} ({{w.code}})</option>
                     </select>
@@ -195,12 +195,12 @@
                     <div class="space-y-3">
                         <label class="label-cyber ml-1">Qty On Hand</label>
                         <input type="number" formControlName="qtyOnHand"
-                            class="w-full bg-white/[0.03] border border-white/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm font-black transition-all">
+                            class="w-full bg-black/[0.03] border border-black/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-slate-900 text-sm font-black transition-all">
                     </div>
                     <div class="space-y-3">
                         <label class="label-cyber ml-1">Qty Reserved</label>
                         <input type="number" formControlName="qtyReserved"
-                            class="w-full bg-white/[0.03] border border-white/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-white text-sm font-black transition-all">
+                            class="w-full bg-black/[0.03] border border-black/5 focus:border-emerald-500/30 px-6 py-4 rounded-xl outline-none text-slate-900 text-sm font-black transition-all">
                     </div>
                 </div>
 

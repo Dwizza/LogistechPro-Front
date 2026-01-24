@@ -53,12 +53,7 @@
     opacity: 0.7;
 }
 
-.cyber-card-pink {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(217, 70, 239, 0.1);
-    position: relative;
-}
+/* Centralized .cyber-card-pink from styles.css is used */
 
 .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
